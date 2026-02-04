@@ -1,0 +1,215 @@
+{
+  "meta": {
+    "title": "Norvia Gel Glove - De Onzichtbare Handschoen",
+    "description": "Bescherm je handen met Norvia Gel Glove. Innovatieve gelhandschoen die een onzichtbare beschermlaag vormt tegen olie, verf, vuil en chemicaliën. Tot 4 uur bescherming.",
+    "keywords": "gel handschoen, handbescherming, onzichtbare handschoen, Norvia, werkhandschoenen, industriële handbescherming"
+  },
+  "nav": {
+    "home": "Home",
+    "product": "Product",
+    "about": "Over Ons",
+    "contact": "Contact",
+    "cart": "Winkelwagen",
+    "buyNow": "Koop Nu",
+    "b2b": "B2B Bestellingen"
+  },
+  "hero": {
+    "badge": "Innovatieve Handbescherming",
+    "title": "De Onzichtbare",
+    "titleAccent": "Handschoen",
+    "subtitle": "Bescherm je handen met Norvia Gel Glove — een revolutionaire gel die een onzichtbare beschermlaag vormt. Geen latex, geen rubber. Puur bescherming.",
+    "cta": "Ontdek Het Product",
+    "ctaSecondary": "Bekijk Hoe Het Werkt",
+    "stats": {
+      "protection": "4 uur bescherming",
+      "washable": "Afwasbaar met water",
+      "siliconeFree": "Siliconenvrij"
+    }
+  },
+  "problem": {
+    "badge": "Het Probleem",
+    "title": "Traditionele handschoenen zitten in de weg",
+    "subtitle": "Rubber en latex handschoenen beperken je grip, gevoel en bewegingsvrijheid. Ze scheuren, je handen zweten, en ze belanden als afval op de stort.",
+    "problems": {
+      "grip": "Verlies van grip en tastzin",
+      "sweat": "Zweetvorming en oncomfort",
+      "waste": "Milieuvervuilend wegwerpplastic",
+      "tears": "Scheurt tijdens het werk"
+    },
+    "solutionTitle": "De Oplossing",
+    "solutionText": "Norvia Gel Glove vormt een onzichtbare, ademende beschermlaag direct op je huid. Volledige vrijheid, maximale bescherming."
+  },
+  "features": {
+    "badge": "Kenmerken",
+    "title": "Waarom Norvia Gel Glove?",
+    "subtitle": "Geavanceerde formule die je handen beschermt zonder ze te beperken",
+    "items": {
+      "protection": {
+        "title": "Tot 4 Uur Bescherming",
+        "description": "Eén pompje biedt een sterke barrière tegen olie, verf, vuil, inkt en chemicaliën."
+      },
+      "washable": {
+        "title": "Afwasbaar Met Water",
+        "description": "Geen zeep nodig. Spoel je handen simpelweg af met water en het vuil glijdt er zo af."
+      },
+      "siliconeFree": {
+        "title": "Siliconenvrij",
+        "description": "Veilig voor alle werkoppervlakken. Geen residu, geen beschadiging van materialen."
+      },
+      "skinCare": {
+        "title": "Huidverzorgend",
+        "description": "Beschermt niet alleen, maar verzorgt ook. Voorkomt uitdroging en houdt je handen zacht."
+      },
+      "grip": {
+        "title": "Behoudt Natuurlijke Grip",
+        "description": "Volledige tastzin en bewegingsvrijheid. Werk alsof je niets draagt."
+      },
+      "fast": {
+        "title": "Droogt In 1 Minuut",
+        "description": "Breng aan, wacht 60 seconden, en je bent klaar om te werken."
+      }
+    }
+  },
+  "industries": {
+    "badge": "Toepassingen",
+    "title": "Voor Elke Industrie",
+    "subtitle": "Van automotive tot bouw — Norvia beschermt professionals in elke sector",
+    "items": {
+      "automotive": {
+        "title": "Automotive",
+        "description": "Bescherm je handen tegen olie, vet en roestvlekken bij reparatie en onderhoud."
+      },
+      "construction": {
+        "title": "Bouw",
+        "description": "Kit, purschuim, secondelijm — werk zonder zorgen over hardnekkige vlekken."
+      },
+      "painting": {
+        "title": "Schilderwerk",
+        "description": "Verf en lak wassen er moeiteloos af. Ideaal voor schilders en spuiters."
+      },
+      "hairdressing": {
+        "title": "Kappers",
+        "description": "Haarverf en chemicaliën? Geen probleem. Bescherm je handen zonder handschoenen."
+      },
+      "roofing": {
+        "title": "Dakdekkers",
+        "description": "Bitumen en teer wassen gemakkelijk af. Behoud je grip op het dak."
+      },
+      "industry": {
+        "title": "Industrie",
+        "description": "Universele bescherming voor elke industriële toepassing."
+      }
+    }
+  },
+  "howItWorks": {
+    "badge": "Gebruiksaanwijzing",
+    "title": "Zo Simpel Is Het",
+    "subtitle": "In 4 stappen volledige handbescherming",
+    "steps": {
+      "apply": {
+        "title": "Aanbrengen",
+        "description": "Breng 1 pompje aan op droge, schone handen en verdeel gelijkmatig."
+      },
+      "dry": {
+        "title": "Laten Drogen",
+        "description": "Wacht 1 minuut. De gel droogt op en vormt een transparante beschermlaag."
+      },
+      "work": {
+        "title": "Aan Het Werk",
+        "description": "Werk tot 4 uur met volledige bescherming en natuurlijke grip."
+      },
+      "wash": {
+        "title": "Afspoelen",
+        "description": "Spoel je handen af met water. Geen zeep nodig — vuil glijdt er zo af."
+      }
+    }
+  },
+  "testimonials": {
+    "badge": "Ervaringen",
+    "title": "Wat Onze Klanten Zeggen",
+    "items": {
+      "jan": {
+        "name": "Jan Peeters",
+        "role": "Automonteur",
+        "text": "De Norvia Gel Glove is het geld absoluut waard! Ik werk dagelijks met olie en vet, en mijn handen zijn nog nooit zo schoon en verzorgd geweest."
+      },
+      "annelies": {
+        "name": "Annelies De Smedt",
+        "role": "Schilder",
+        "text": "Ik was sceptisch, maar de gel handschoen werkt echt! Het schoonmaken na een klus is nu zo veel sneller en makkelijker. Mijn handen voelen ook veel zachter aan."
+      },
+      "dirk": {
+        "name": "Dirk Martens",
+        "role": "Bouwvakker",
+        "text": "Eindelijk geen droge en geïrriteerde handen meer! De Norvia Gel Glove beschermt mijn handen perfect en is ook nog eens verzorgend."
+      }
+    }
+  },
+  "b2b": {
+    "badge": "Zakelijk",
+    "title": "B2B Bestellingen",
+    "subtitle": "Norvia Gel Glove voor je hele team. Profiteer van volumekorting bij grotere bestellingen.",
+    "benefits": {
+      "volume": "Volumekorting vanaf 10 stuks",
+      "invoice": "Betaling op factuur mogelijk",
+      "delivery": "Snelle levering in heel Europa",
+      "support": "Persoonlijke accountmanager"
+    },
+    "cta": "Vraag Offerte Aan",
+    "ctaEmail": "gelgloves@carpartsroosendaal.nl"
+  },
+  "cta": {
+    "title": "Klaar Om Je Handen Te Beschermen?",
+    "subtitle": "Bestel vandaag Norvia Gel Glove en ervaar het verschil.",
+    "price": "Vanaf",
+    "addToCart": "In Winkelwagen",
+    "buyNow": "Nu Bestellen"
+  },
+  "product": {
+    "title": "Norvia Gel Glove",
+    "subtitle": "De onzichtbare handschoen",
+    "description": "Norvia Gel Glove is een innovatieve handbeschermingsoplossing, speciaal ontworpen voor professioneel en industrieel gebruik. De gel vormt een beschermende laag tegen olie, vuil, vet, roest, verf, kit, secondelijm, purschuim en autolak.",
+    "addToCart": "In Winkelwagen",
+    "buyNow": "Nu Bestellen",
+    "quantity": "Aantal",
+    "inStock": "Op voorraad",
+    "outOfStock": "Uitverkocht",
+    "specifications": "Specificaties",
+    "volumePricing": "Volumekorting",
+    "specs": {
+      "duration": "Beschermingsduur",
+      "durationValue": "Tot 4 uur",
+      "drying": "Droogtijd",
+      "dryingValue": "1 minuut",
+      "silicone": "Siliconenvrij",
+      "siliconeValue": "Ja",
+      "application": "Aanbrengen",
+      "applicationValue": "1 pompje per gebruik",
+      "washing": "Verwijderen",
+      "washingValue": "Afwasbaar met water"
+    }
+  },
+  "footer": {
+    "description": "Norvia Gel Glove — Innovatieve onzichtbare handbescherming voor professionals.",
+    "product": "Product",
+    "company": "Bedrijf",
+    "support": "Support",
+    "about": "Over Ons",
+    "contact": "Contact",
+    "faq": "Veelgestelde Vragen",
+    "shipping": "Verzending",
+    "returns": "Retourneren",
+    "privacy": "Privacybeleid",
+    "terms": "Algemene Voorwaarden",
+    "copyright": "© {year} Norvia Gel Glove. Alle rechten voorbehouden.",
+    "address": "Gastelseweg 59, Roosendaal"
+  },
+  "cart": {
+    "title": "Winkelwagen",
+    "empty": "Je winkelwagen is leeg",
+    "continueShopping": "Verder winkelen",
+    "subtotal": "Subtotaal",
+    "checkout": "Naar Checkout",
+    "remove": "Verwijderen"
+  }
+}

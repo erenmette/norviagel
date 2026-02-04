@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://norvia-gel-glove.myshopify.com/sitemap.xml

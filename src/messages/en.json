@@ -1,0 +1,215 @@
+{
+  "meta": {
+    "title": "Norvia Gel Glove - The Invisible Glove",
+    "description": "Protect your hands with Norvia Gel Glove. Innovative gel glove that forms an invisible protective barrier against oil, paint, dirt and chemicals. Up to 4 hours protection.",
+    "keywords": "gel glove, hand protection, invisible glove, Norvia, work gloves, industrial hand protection"
+  },
+  "nav": {
+    "home": "Home",
+    "product": "Product",
+    "about": "About",
+    "contact": "Contact",
+    "cart": "Cart",
+    "buyNow": "Buy Now",
+    "b2b": "B2B Orders"
+  },
+  "hero": {
+    "badge": "Innovative Hand Protection",
+    "title": "The Invisible",
+    "titleAccent": "Glove",
+    "subtitle": "Protect your hands with Norvia Gel Glove — a revolutionary gel that forms an invisible protective layer. No latex, no rubber. Pure protection.",
+    "cta": "Discover The Product",
+    "ctaSecondary": "See How It Works",
+    "stats": {
+      "protection": "4 hours protection",
+      "washable": "Washable with water",
+      "siliconeFree": "Silicone-free"
+    }
+  },
+  "problem": {
+    "badge": "The Problem",
+    "title": "Traditional gloves get in the way",
+    "subtitle": "Rubber and latex gloves limit your grip, feel and freedom of movement. They tear, your hands sweat, and they end up as waste in landfills.",
+    "problems": {
+      "grip": "Loss of grip and touch",
+      "sweat": "Sweating and discomfort",
+      "waste": "Polluting disposable plastic",
+      "tears": "Tears during work"
+    },
+    "solutionTitle": "The Solution",
+    "solutionText": "Norvia Gel Glove forms an invisible, breathable protective layer directly on your skin. Complete freedom, maximum protection."
+  },
+  "features": {
+    "badge": "Features",
+    "title": "Why Norvia Gel Glove?",
+    "subtitle": "Advanced formula that protects your hands without limiting them",
+    "items": {
+      "protection": {
+        "title": "Up To 4 Hours Protection",
+        "description": "One pump provides a strong barrier against oil, paint, dirt, ink and chemicals."
+      },
+      "washable": {
+        "title": "Washable With Water",
+        "description": "No soap needed. Simply rinse your hands with water and the dirt slides right off."
+      },
+      "siliconeFree": {
+        "title": "Silicone-Free",
+        "description": "Safe for all work surfaces. No residue, no damage to materials."
+      },
+      "skinCare": {
+        "title": "Skin Caring",
+        "description": "Not only protects but also cares. Prevents drying and keeps your hands soft."
+      },
+      "grip": {
+        "title": "Maintains Natural Grip",
+        "description": "Full tactile feel and freedom of movement. Work as if you're wearing nothing."
+      },
+      "fast": {
+        "title": "Dries In 1 Minute",
+        "description": "Apply, wait 60 seconds, and you're ready to work."
+      }
+    }
+  },
+  "industries": {
+    "badge": "Applications",
+    "title": "For Every Industry",
+    "subtitle": "From automotive to construction — Norvia protects professionals in every sector",
+    "items": {
+      "automotive": {
+        "title": "Automotive",
+        "description": "Protect your hands from oil, grease and rust stains during repair and maintenance."
+      },
+      "construction": {
+        "title": "Construction",
+        "description": "Sealant, foam, super glue — work without worrying about stubborn stains."
+      },
+      "painting": {
+        "title": "Painting",
+        "description": "Paint and lacquer wash off effortlessly. Ideal for painters and sprayers."
+      },
+      "hairdressing": {
+        "title": "Hairdressing",
+        "description": "Hair dye and chemicals? No problem. Protect your hands without gloves."
+      },
+      "roofing": {
+        "title": "Roofing",
+        "description": "Bitumen and tar wash off easily. Keep your grip on the roof."
+      },
+      "industry": {
+        "title": "Industry",
+        "description": "Universal protection for every industrial application."
+      }
+    }
+  },
+  "howItWorks": {
+    "badge": "How To Use",
+    "title": "It's That Simple",
+    "subtitle": "Full hand protection in 4 steps",
+    "steps": {
+      "apply": {
+        "title": "Apply",
+        "description": "Apply 1 pump to dry, clean hands and spread evenly."
+      },
+      "dry": {
+        "title": "Let It Dry",
+        "description": "Wait 1 minute. The gel dries and forms a transparent protective layer."
+      },
+      "work": {
+        "title": "Get To Work",
+        "description": "Work for up to 4 hours with full protection and natural grip."
+      },
+      "wash": {
+        "title": "Rinse Off",
+        "description": "Rinse your hands with water. No soap needed — dirt slides right off."
+      }
+    }
+  },
+  "testimonials": {
+    "badge": "Reviews",
+    "title": "What Our Customers Say",
+    "items": {
+      "jan": {
+        "name": "Jan Peeters",
+        "role": "Auto Mechanic",
+        "text": "The Norvia Gel Glove is absolutely worth the money! I work with oil and grease daily, and my hands have never been this clean and well-maintained."
+      },
+      "annelies": {
+        "name": "Annelies De Smedt",
+        "role": "Painter",
+        "text": "I was skeptical, but the gel glove really works! Cleaning up after a job is so much faster and easier now. My hands feel much softer too."
+      },
+      "dirk": {
+        "name": "Dirk Martens",
+        "role": "Construction Worker",
+        "text": "Finally no more dry and irritated hands! The Norvia Gel Glove protects my hands perfectly and is also caring."
+      }
+    }
+  },
+  "b2b": {
+    "badge": "Business",
+    "title": "B2B Orders",
+    "subtitle": "Norvia Gel Glove for your entire team. Benefit from volume discounts on larger orders.",
+    "benefits": {
+      "volume": "Volume discount from 10 units",
+      "invoice": "Invoice payment available",
+      "delivery": "Fast delivery across Europe",
+      "support": "Personal account manager"
+    },
+    "cta": "Request Quote",
+    "ctaEmail": "gelgloves@carpartsroosendaal.nl"
+  },
+  "cta": {
+    "title": "Ready To Protect Your Hands?",
+    "subtitle": "Order Norvia Gel Glove today and experience the difference.",
+    "price": "From",
+    "addToCart": "Add to Cart",
+    "buyNow": "Order Now"
+  },
+  "product": {
+    "title": "Norvia Gel Glove",
+    "subtitle": "The invisible glove",
+    "description": "Norvia Gel Glove is an innovative hand protection solution, specially designed for professional and industrial use. The gel forms a protective layer against oil, dirt, grease, rust, paint, sealant, super glue, spray foam and car paint.",
+    "addToCart": "Add to Cart",
+    "buyNow": "Order Now",
+    "quantity": "Quantity",
+    "inStock": "In stock",
+    "outOfStock": "Out of stock",
+    "specifications": "Specifications",
+    "volumePricing": "Volume Pricing",
+    "specs": {
+      "duration": "Protection duration",
+      "durationValue": "Up to 4 hours",
+      "drying": "Drying time",
+      "dryingValue": "1 minute",
+      "silicone": "Silicone-free",
+      "siliconeValue": "Yes",
+      "application": "Application",
+      "applicationValue": "1 pump per use",
+      "washing": "Removal",
+      "washingValue": "Washable with water"
+    }
+  },
+  "footer": {
+    "description": "Norvia Gel Glove — Innovative invisible hand protection for professionals.",
+    "product": "Product",
+    "company": "Company",
+    "support": "Support",
+    "about": "About Us",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "shipping": "Shipping",
+    "returns": "Returns",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "copyright": "© {year} Norvia Gel Glove. All rights reserved.",
+    "address": "Gastelseweg 59, Roosendaal"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "continueShopping": "Continue shopping",
+    "subtotal": "Subtotal",
+    "checkout": "Proceed to Checkout",
+    "remove": "Remove"
+  }
+}
