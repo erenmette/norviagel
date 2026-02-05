@@ -110,10 +110,10 @@ export default function StickyBar() {
                 <button
                   onClick={handleTryNow}
                   disabled={bottlePhase !== 'idle'}
-                  className="relative group flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-3 rounded-xl border border-accent/30 bg-accent/5 hover:bg-accent/10 text-accent transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,163,255,0.2)] disabled:opacity-50"
+                  className="sticky-glow-btn-alt flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-semibold text-white disabled:opacity-50"
                 >
                   <Sparkles size={16} />
-                  <span className="text-xs sm:text-sm font-medium">{tryLabel}</span>
+                  <span>{tryLabel}</span>
                 </button>
 
                 {/* Chat Button */}
