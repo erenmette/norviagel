@@ -1,11 +1,11 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { useCart } from '@/lib/cart-context';
 import { formatPrice } from '@/lib/utils';
-import { Shield, Clock, FlaskConical, Hand, Droplets, CheckCircle2, Minus, Plus, ShoppingCart, Zap, Package } from 'lucide-react';
+import { Shield, Clock, FlaskConical, Hand, Droplets, CheckCircle2, Minus, Plus, ShoppingCart, Zap, Package, PartyPopper } from 'lucide-react';
 import ScrollAnimationWrapper from '@/components/sections/ScrollAnimationWrapper';
 
 type ProductImage = {
@@ -28,6 +28,9 @@ export default function ProductContent({ images, variantId, price, currencyCode,
   const { addItem, isLoading } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [reachedMilestone, setReachedMilestone] = useState<string | null>(null);
+  const prevQuantity = useRef(1);
 
   const handleAddToCart = async () => {
     await addItem(variantId, quantity);
@@ -41,12 +44,40 @@ export default function ProductContent({ images, variantId, price, currencyCode,
     { key: 'washing', icon: Droplets },
   ] as const;
 
-  const volumePricing = [
-    { qty: '1-9', price: '€28,95', discount: '' },
-    { qty: '10-24', price: '€26,05', discount: '-10%' },
-    { qty: '25-49', price: '€24,60', discount: '-15%' },
-    { qty: '50+', price: '€23,16', discount: '-20%' },
+  const volumeTiers = [
+    { min: 1, max: 9, label: '1-9', price: '€28,95', unitPrice: 28.95, discount: '' },
+    { min: 10, max: 24, label: '10-24', price: '€26,05', unitPrice: 26.05, discount: '-10%' },
+    { min: 25, max: 49, label: '25-49', price: '€24,60', unitPrice: 24.60, discount: '-15%' },
+    { min: 50, max: 999, label: '50+', price: '€23,16', unitPrice: 23.16, discount: '-20%' },
   ];
+
+  const milestones = [
+    { qty: 10, discount: '10%' },
+    { qty: 25, discount: '15%' },
+    { qty: 50, discount: '20%' },
+  ];
+
+  const maxMilestone = 50;
+  const progressPercent = Math.min((quantity / maxMilestone) * 100, 100);
+  const currentTier = volumeTiers.find((t) => quantity >= t.min && quantity <= t.max) || volumeTiers[0];
+  const nextMilestone = milestones.find((m) => quantity < m.qty);
+
+  const changeQuantity = (newQty: number) => {
+    const clamped = Math.max(1, newQty);
+    setIsAnimating(true);
+    setTimeout(() => setIsAnimating(false), 200);
+
+    // Check if crossing a milestone
+    for (const m of milestones) {
+      if (prevQuantity.current < m.qty && clamped >= m.qty) {
+        setReachedMilestone(m.discount);
+        setTimeout(() => setReachedMilestone(null), 2000);
+      }
+    }
+
+    prevQuantity.current = clamped;
+    setQuantity(clamped);
+  };
 
   const currentImage = images[selectedImage];
 
@@ -160,33 +191,118 @@ export default function ProductContent({ images, variantId, price, currencyCode,
               </div>
 
               {/* Quantity & Add to Cart */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <div className="flex items-center border border-border rounded-xl overflow-hidden">
+              <div className="space-y-4 pt-4">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {/* Animated quantity selector */}
+                  <div className="glass rounded-2xl p-1 flex items-center gap-1 border border-border">
+                    <button
+                      onClick={() => changeQuantity(quantity - 1)}
+                      className="w-12 h-12 rounded-xl flex items-center justify-center hover:bg-accent/15 active:scale-90 transition-all duration-200 text-text-secondary hover:text-accent"
+                    >
+                      <Minus size={18} />
+                    </button>
+                    <div className="relative w-16 h-12 flex items-center justify-center overflow-hidden">
+                      <span
+                        className={`text-xl font-bold text-white transition-all duration-200 ${
+                          isAnimating ? 'scale-125 text-accent' : 'scale-100'
+                        }`}
+                      >
+                        {quantity}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => changeQuantity(quantity + 1)}
+                      className="w-12 h-12 rounded-xl flex items-center justify-center hover:bg-accent/15 active:scale-90 transition-all duration-200 text-text-secondary hover:text-accent"
+                    >
+                      <Plus size={18} />
+                    </button>
+                  </div>
+
                   <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-4 py-3 hover:bg-accent/10 transition-colors"
+                    onClick={handleAddToCart}
+                    disabled={isLoading || !available}
+                    className="flex-1 btn-primary text-base py-4 flex items-center justify-center gap-2 disabled:opacity-50"
                   >
-                    <Minus size={18} />
-                  </button>
-                  <span className="px-6 py-3 font-semibold text-lg min-w-[4rem] text-center border-x border-border">
-                    {quantity}
-                  </span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="px-4 py-3 hover:bg-accent/10 transition-colors"
-                  >
-                    <Plus size={18} />
+                    <ShoppingCart size={18} />
+                    {isLoading ? '...' : t('addToCart')}
                   </button>
                 </div>
 
-                <button
-                  onClick={handleAddToCart}
-                  disabled={isLoading || !available}
-                  className="flex-1 btn-primary text-base py-4 flex items-center justify-center gap-2 disabled:opacity-50"
-                >
-                  <ShoppingCart size={18} />
-                  {isLoading ? '...' : t('addToCart')}
-                </button>
+                {/* Volume discount progress bar */}
+                <div className="glass rounded-2xl p-5 border border-border relative overflow-hidden">
+                  {/* Milestone celebration overlay */}
+                  {reachedMilestone && (
+                    <div className="absolute inset-0 z-10 flex items-center justify-center bg-accent/10 backdrop-blur-sm rounded-2xl animate-pulse">
+                      <div className="flex items-center gap-2 text-accent font-bold text-lg">
+                        <PartyPopper size={22} />
+                        <span>{reachedMilestone} korting!</span>
+                        <PartyPopper size={22} />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Current tier info */}
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm text-text-secondary">
+                      {currentTier.discount
+                        ? <span className="text-accent font-semibold">{currentTier.discount} korting actief</span>
+                        : <span className="text-text-muted">Geen korting</span>
+                      }
+                    </span>
+                    <span className="text-sm font-medium text-white">
+                      {currentTier.unitPrice.toFixed(2).replace('.', ',')} p/st
+                    </span>
+                  </div>
+
+                  {/* Progress bar */}
+                  <div className="relative h-3 rounded-full bg-surface-light border border-border overflow-hidden">
+                    <div
+                      className="absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out"
+                      style={{
+                        width: `${progressPercent}%`,
+                        background: 'linear-gradient(90deg, #00A3FF, #33B5FF)',
+                        boxShadow: '0 0 12px rgba(0,163,255,0.5), 0 0 24px rgba(0,163,255,0.2)',
+                      }}
+                    />
+                  </div>
+
+                  {/* Milestones */}
+                  <div className="relative flex justify-between mt-2">
+                    {milestones.map((m) => {
+                      const reached = quantity >= m.qty;
+                      const pos = (m.qty / maxMilestone) * 100;
+                      return (
+                        <div
+                          key={m.qty}
+                          className="flex flex-col items-center"
+                          style={{ position: 'absolute', left: `${pos}%`, transform: 'translateX(-50%)' }}
+                        >
+                          <div
+                            className={`w-2.5 h-2.5 rounded-full border-2 transition-all duration-300 ${
+                              reached
+                                ? 'bg-accent border-accent shadow-[0_0_8px_rgba(0,163,255,0.6)]'
+                                : 'bg-surface-light border-border'
+                            }`}
+                          />
+                          <span className={`text-[10px] mt-1 font-medium ${reached ? 'text-accent' : 'text-text-muted'}`}>
+                            {m.qty}x
+                          </span>
+                          <span className={`text-[10px] ${reached ? 'text-accent/80' : 'text-text-muted/60'}`}>
+                            {m.discount}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Next milestone hint */}
+                  {nextMilestone && (
+                    <p className="text-xs text-text-muted mt-4 text-center">
+                      Nog <span className="text-accent font-semibold">{nextMilestone.qty - quantity}</span> stuks voor{' '}
+                      <span className="text-accent font-semibold">{nextMilestone.discount}</span> korting
+                    </p>
+                  )}
+                </div>
               </div>
 
               {/* Trust badges */}
@@ -236,20 +352,25 @@ export default function ProductContent({ images, variantId, price, currencyCode,
           </ScrollAnimationWrapper>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {volumePricing.map((tier, i) => (
-              <ScrollAnimationWrapper key={tier.qty} delay={i * 100}>
-                <div className="glass rounded-2xl p-6 text-center card-hover">
-                  <p className="text-sm text-text-muted mb-2">{t('quantity')}</p>
-                  <p className="text-xl font-bold text-white mb-3">{tier.qty}</p>
-                  <p className="text-2xl font-bold text-accent">{tier.price}</p>
-                  {tier.discount && (
-                    <span className="inline-block mt-2 text-xs font-semibold text-green-400 bg-green-400/10 px-2 py-1 rounded-full">
-                      {tier.discount}
-                    </span>
-                  )}
-                </div>
-              </ScrollAnimationWrapper>
-            ))}
+            {volumeTiers.map((tier, i) => {
+              const isActive = quantity >= tier.min && quantity <= tier.max;
+              return (
+                <ScrollAnimationWrapper key={tier.label} delay={i * 100}>
+                  <div className={`glass rounded-2xl p-6 text-center card-hover transition-all duration-300 ${
+                    isActive ? 'border border-accent/40 shadow-[0_0_20px_rgba(0,163,255,0.15)]' : ''
+                  }`}>
+                    <p className="text-sm text-text-muted mb-2">{t('quantity')}</p>
+                    <p className="text-xl font-bold text-white mb-3">{tier.label}</p>
+                    <p className={`text-2xl font-bold ${isActive ? 'text-accent' : 'text-text-secondary'}`}>{tier.price}</p>
+                    {tier.discount && (
+                      <span className="inline-block mt-2 text-xs font-semibold text-green-400 bg-green-400/10 px-2 py-1 rounded-full">
+                        {tier.discount}
+                      </span>
+                    )}
+                  </div>
+                </ScrollAnimationWrapper>
+              );
+            })}
           </div>
         </div>
       </div>
