@@ -293,18 +293,6 @@ body {
   animation: glow-pulse 3s ease-in-out infinite;
 }
 
-/* ===== CHAT WIDGET ANIMATION ===== */
-@keyframes chatOpen {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
 /* ===== NOISE TEXTURE OVERLAY ===== */
 .noise::after {
   content: '';

@@ -20,12 +20,28 @@ export default function ChatWidget({ isOpen, onClose }: Props) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const greeting = locale === 'nl'
     ? 'Hoi! Ik ben de Norvia assistent. Stel gerust je vraag over Norvia Gel Glove.'
     : 'Hi! I\'m the Norvia assistant. Feel free to ask me anything about Norvia Gel Glove.';
+
+  // Handle smooth open/close
+  useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setIsAnimating(true));
+      });
+    } else {
+      setIsAnimating(false);
+      const timer = setTimeout(() => setIsVisible(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -38,8 +54,11 @@ export default function ChatWidget({ isOpen, onClose }: Props) {
   }, [messages]);
 
   useEffect(() => {
-    if (isOpen) inputRef.current?.focus();
-  }, [isOpen]);
+    if (isOpen && isAnimating) {
+      const timer = setTimeout(() => inputRef.current?.focus(), 350);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, isAnimating]);
 
   const sendMessage = async () => {
     const text = input.trim();
@@ -74,10 +93,17 @@ export default function ChatWidget({ isOpen, onClose }: Props) {
     }
   };
 
-  if (!isOpen) return null;
+  if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100%-2rem)] sm:w-96 max-h-[70vh] flex flex-col rounded-2xl border border-accent/20 bg-primary-dark/98 backdrop-blur-xl shadow-[0_0_40px_rgba(0,163,255,0.15)] overflow-hidden animate-[chatOpen_0.3s_ease-out]">
+    <div
+      className={cn(
+        'fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100%-2rem)] sm:w-96 max-h-[70vh] flex flex-col rounded-2xl border border-accent/20 bg-primary-dark/98 backdrop-blur-xl shadow-[0_0_40px_rgba(0,163,255,0.15)] overflow-hidden transition-all duration-300 ease-out origin-bottom-right',
+        isAnimating
+          ? 'opacity-100 scale-100 translate-y-0'
+          : 'opacity-0 scale-95 translate-y-4'
+      )}
+    >
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b border-border bg-surface/50">
         <div className="flex items-center gap-3">
@@ -105,9 +131,10 @@ export default function ChatWidget({ isOpen, onClose }: Props) {
           <div
             key={i}
             className={cn(
-              'flex',
+              'flex transition-all duration-300',
               msg.role === 'user' ? 'justify-end' : 'justify-start'
             )}
+            style={{ animationDelay: `${i * 50}ms` }}
           >
             <div
               className={cn(

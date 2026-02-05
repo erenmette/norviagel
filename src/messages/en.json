@@ -17,7 +17,7 @@
     "badge": "Innovative Hand Protection",
     "title": "The Invisible",
     "titleAccent": "Glove",
-    "subtitle": "Protect your hands with Norvia Gel Glove — a revolutionary gel that forms an invisible protective layer. No latex, no rubber. Pure protection.",
+    "subtitle": "Protect your hands with Norvia Gel Glove. A revolutionary gel that forms an invisible protective layer. No latex, no rubber. Pure protection.",
     "cta": "Discover The Product",
     "ctaSecondary": "See How It Works",
     "stats": {
@@ -73,7 +73,7 @@
   "industries": {
     "badge": "Applications",
     "title": "For Every Industry",
-    "subtitle": "From automotive to construction — Norvia protects professionals in every sector",
+    "subtitle": "From automotive to construction, Norvia protects professionals in every sector",
     "items": {
       "automotive": {
         "title": "Automotive",
@@ -81,7 +81,7 @@
       },
       "construction": {
         "title": "Construction",
-        "description": "Sealant, foam, super glue — work without worrying about stubborn stains."
+        "description": "Sealant, foam, super glue. Work without worrying about stubborn stains."
       },
       "painting": {
         "title": "Painting",
@@ -120,7 +120,7 @@
       },
       "wash": {
         "title": "Rinse Off",
-        "description": "Rinse your hands with water. No soap needed — dirt slides right off."
+        "description": "Rinse your hands with water. No soap needed, dirt slides right off."
       }
     }
   },
@@ -190,7 +190,7 @@
     }
   },
   "footer": {
-    "description": "Norvia Gel Glove — Innovative invisible hand protection for professionals.",
+    "description": "Norvia Gel Glove. Innovative invisible hand protection for professionals.",
     "product": "Product",
     "company": "Company",
     "support": "Support",

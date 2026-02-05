@@ -17,7 +17,7 @@
     "badge": "Innovatieve Handbescherming",
     "title": "De Onzichtbare",
     "titleAccent": "Handschoen",
-    "subtitle": "Bescherm je handen met Norvia Gel Glove — een revolutionaire gel die een onzichtbare beschermlaag vormt. Geen latex, geen rubber. Puur bescherming.",
+    "subtitle": "Bescherm je handen met Norvia Gel Glove. Een revolutionaire gel die een onzichtbare beschermlaag vormt. Geen latex, geen rubber. Puur bescherming.",
     "cta": "Ontdek Het Product",
     "ctaSecondary": "Bekijk Hoe Het Werkt",
     "stats": {
@@ -73,7 +73,7 @@
   "industries": {
     "badge": "Toepassingen",
     "title": "Voor Elke Industrie",
-    "subtitle": "Van automotive tot bouw — Norvia beschermt professionals in elke sector",
+    "subtitle": "Van automotive tot bouw, Norvia beschermt professionals in elke sector",
     "items": {
       "automotive": {
         "title": "Automotive",
@@ -81,7 +81,7 @@
       },
       "construction": {
         "title": "Bouw",
-        "description": "Kit, purschuim, secondelijm — werk zonder zorgen over hardnekkige vlekken."
+        "description": "Kit, purschuim, secondelijm. Werk zonder zorgen over hardnekkige vlekken."
       },
       "painting": {
         "title": "Schilderwerk",
@@ -120,7 +120,7 @@
       },
       "wash": {
         "title": "Afspoelen",
-        "description": "Spoel je handen af met water. Geen zeep nodig — vuil glijdt er zo af."
+        "description": "Spoel je handen af met water. Geen zeep nodig, vuil glijdt er zo af."
       }
     }
   },
@@ -190,7 +190,7 @@
     }
   },
   "footer": {
-    "description": "Norvia Gel Glove — Innovatieve onzichtbare handbescherming voor professionals.",
+    "description": "Norvia Gel Glove. Innovatieve onzichtbare handbescherming voor professionals.",
     "product": "Product",
     "company": "Bedrijf",
     "support": "Support",

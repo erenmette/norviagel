@@ -1,11 +1,11 @@
 /**
- * Reviews data — Edit this file to add, remove, or modify reviews.
+ * Reviews data.Edit this file to add, remove, or modify reviews.
  *
  * Each review has:
  *  - id: unique identifier
  *  - name: reviewer name
- *  - role: { nl, en } — job title in both languages
- *  - text: { nl, en } — review text in both languages
+ *  - role: { nl, en }.job title in both languages
+ *  - text: { nl, en }.review text in both languages
  *  - rating: 1–5 stars
  *  - date: date string (shown as-is)
  *  - verified: show "Verified purchase" badge
@@ -87,8 +87,8 @@ const reviews: Review[] = [
     name: 'Peter Willems',
     role: { nl: 'Garagehouder', en: 'Garage Owner' },
     text: {
-      nl: 'Ik heb 15 flessen besteld voor mijn hele team. De jongens zijn enthousiast — schone handen zonder gedoe met wegwerphandschoenen. Geweldig product.',
-      en: "I ordered 15 bottles for my entire team. The guys are enthusiastic — clean hands without the hassle of disposable gloves. Great product.",
+      nl: 'Ik heb 15 flessen besteld voor mijn hele team. De jongens zijn enthousiast.schone handen zonder gedoe met wegwerphandschoenen. Geweldig product.',
+      en: "I ordered 15 bottles for my entire team. The guys are enthusiastic.clean hands without the hassle of disposable gloves. Great product.",
     },
     rating: 5,
     date: '2025-04-05',

@@ -67,7 +67,7 @@ function AboutContent() {
               </p>
               <p className="text-text-secondary leading-relaxed">
                 Vanuit Roosendaal leveren wij aan professionals en bedrijven door heel Europa.
-                Of je nu monteur, schilder, kapper of dakdekker bent — Norvia Gel Glove is er voor jou.
+                Of je nu monteur, schilder, kapper of dakdekker bent, Norvia Gel Glove is er voor jou.
               </p>
             </div>
           </div>

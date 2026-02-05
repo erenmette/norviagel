@@ -41,7 +41,7 @@ export default function TestimonialsSection() {
               ))}
             </div>
             <span className="text-sm text-text-secondary font-medium">
-              5.0 — {reviews.length} {locale === 'nl' ? 'beoordelingen' : 'reviews'}
+              5.0 | {reviews.length} {locale === 'nl' ? 'beoordelingen' : 'reviews'}
             </span>
           </div>
         </ScrollAnimationWrapper>
