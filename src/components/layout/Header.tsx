@@ -63,22 +63,13 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative w-10 h-10 flex-shrink-0">
-              {/* Replace with actual logo: put your logo at /public/images/logo.png */}
               <Image
-                src="/images/logo.png"
+                src="/images/logo_echt.png"
                 alt="Norvia"
                 width={40}
                 height={40}
-                className="w-10 h-10 object-contain"
-                onError={(e) => {
-                  // Fallback to text logo if image not found
-                  (e.target as HTMLImageElement).style.display = 'none';
-                  (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
-                }}
+                className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
               />
-              <div className="hidden w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-accent-dark items-center justify-center font-bold text-lg text-white group-hover:shadow-[0_0_20px_rgba(0,163,255,0.3)] transition-all duration-300">
-                N
-              </div>
             </div>
             <div className="hidden sm:block">
               <span className="text-lg font-bold text-white">Norvia</span>

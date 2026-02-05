@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useCart } from '@/lib/cart-context';
-import { Link } from '@/i18n/navigation';
+import { Link, useRouter } from '@/i18n/navigation';
 import { ShoppingCart, ArrowRight, MessageCircle } from 'lucide-react';
 import { formatPrice, cn } from '@/lib/utils';
 import ChatWidget from '@/components/chat/ChatWidget';
@@ -12,6 +12,7 @@ const VARIANT_ID = 'gid://shopify/ProductVariant/57354473570688';
 
 export default function StickyBar() {
   const t = useTranslations();
+  const router = useRouter();
   const { cart, addItem, isLoading } = useCart();
   const [isVisible, setIsVisible] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -26,6 +27,7 @@ export default function StickyBar() {
 
   const handleAddToCart = async () => {
     await addItem(VARIANT_ID, 1);
+    router.push('/product');
   };
 
   return (
