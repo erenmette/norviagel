@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Shield, Droplets, FlaskConical, ArrowDown } from 'lucide-react';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 const ParticleField = dynamic(() => import('@/components/three/ParticleField'), {
@@ -72,22 +73,28 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right - Product Visual Placeholder */}
+          {/* Right - Product Bottle */}
           <div className="relative flex items-center justify-center">
-            <div className="relative w-80 h-80 sm:w-96 sm:h-96">
-              {/* Glowing rings */}
-              <div className="absolute inset-0 rounded-full border border-accent/20 animate-[spin_20s_linear_infinite]" />
-              <div className="absolute inset-4 rounded-full border border-accent/15 animate-[spin_15s_linear_infinite_reverse]" />
-              <div className="absolute inset-8 rounded-full border border-accent/10 animate-[spin_25s_linear_infinite]" />
+            <div className="relative w-80 h-96 sm:w-96 sm:h-[28rem]">
+              {/* Glowing rings behind bottle */}
+              <div className="absolute inset-0 rounded-full border border-accent/10 animate-[spin_20s_linear_infinite]" />
+              <div className="absolute inset-8 rounded-full border border-accent/8 animate-[spin_25s_linear_infinite_reverse]" />
 
-              {/* Center product placeholder */}
-              <div className="absolute inset-12 rounded-full glass glow flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-32 mx-auto rounded-xl bg-gradient-to-b from-accent/30 to-accent/5 border border-accent/30 flex items-center justify-center mb-3 animate-float">
-                    <span className="text-3xl font-bold text-accent">N</span>
-                  </div>
-                  <p className="text-xs text-text-muted uppercase tracking-widest">Gel Glove</p>
-                </div>
+              {/* Glow behind bottle */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-accent/15 blur-3xl" />
+
+              {/* Actual bottle image */}
+              <div className="absolute inset-0 flex items-center justify-center animate-float">
+                <Image
+                  src="/images/bottle.png"
+                  alt="Norvia Gel Glove"
+                  width={240}
+                  height={340}
+                  className="select-none"
+                  style={{ filter: 'drop-shadow(0 10px 40px rgba(0,163,255,0.25))' }}
+                  priority
+                  draggable={false}
+                />
               </div>
 
               {/* Floating dots */}

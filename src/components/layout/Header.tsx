@@ -68,7 +68,8 @@ export default function Header() {
                 alt="Norvia"
                 width={40}
                 height={40}
-                className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+                className="w-10 h-10 object-contain"
+                style={{ filter: 'drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 14px rgba(255,255,255,0.5))' }}
               />
             </div>
             <div className="hidden sm:block">

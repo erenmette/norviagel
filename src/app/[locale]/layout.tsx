@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CartDrawer from '@/components/cart/CartDrawer';
 import StickyBar from '@/components/ui/StickyBar';
+import FloatingBottle from '@/components/hero/FloatingBottle';
 
 const geistSans = Geist({
   subsets: ['latin'],
@@ -49,6 +50,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <main className="min-h-screen pb-20">{children}</main>
             <Footer />
             <CartDrawer />
+            <FloatingBottle />
             <StickyBar />
           </CartProvider>
         </NextIntlClientProvider>
