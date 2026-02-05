@@ -36,20 +36,52 @@ npm run build   # Production build
 npm run lint    # Lint code
 ```
 
+## Shopify Store Info
+- **Store URL**: norvia-6321.myshopify.com
+- **Product ID**: gid://shopify/Product/15549218750848
+- **Variant ID**: gid://shopify/ProductVariant/57354473570688
+- **Product handle**: norvia-gel-glove
+
 ## Environment Variables (.env.local)
 ```
-NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
-NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN=your-token
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN=norvia-6321.myshopify.com
+NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN=<public-storefront-token>
+NEXT_PUBLIC_SITE_URL=https://norviagel.vercel.app
 ```
+Vercel env vars staan ook ingesteld voor production.
 
-## Shopify Setup (Gebruiker)
-1. Shopify store aanmaken
-2. Product toevoegen: Norvia Gel Glove, €28,95
-3. Storefront API app aanmaken → token ophalen
-4. Sendcloud app installeren
-5. Betalingen instellen (iDEAL, Bancontact, etc.)
-6. Bulk kortingen configureren voor B2B
+## Shopify Dev Informatie (2026)
+
+### Nieuw systeem: Dev Dashboard (dev.shopify.com)
+Sinds 1 januari 2026 worden nieuwe custom apps aangemaakt via het **Shopify Developer Dashboard** op `dev.shopify.com`, niet meer via Shopify Admin → Settings → Apps.
+
+### Storefront API Token ophalen
+De makkelijkste manier voor een headless storefront:
+1. Installeer het **Headless** kanaal vanuit de Shopify App Store
+2. Ga in Shopify Admin naar het Headless kanaal
+3. Klik **Create storefront** → geef het een naam
+4. Je krijgt automatisch een **public** en **private** access token
+5. Bij **Storefront API permissions** → Edit → vink alles aan
+6. De **public token** wordt gebruikt in de frontend (NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN)
+
+### Wat NIET te doen
+- Het Dev Dashboard (`dev.shopify.com`) is voor het bouwen van Shopify apps met CLI — **niet** voor headless storefronts
+- `npm init @shopify/app@latest` is voor Shopify app development, niet voor ons project
+- De Client ID en API Secret op het Dev Dashboard zijn voor OAuth flows, niet voor Storefront API
+
+### Referenties
+- Headless channel: https://shopify.dev/docs/storefronts/headless/building-with-the-storefront-api/manage-headless-channels
+- Storefront API getting started: https://shopify.dev/docs/storefronts/headless/building-with-the-storefront-api/getting-started
+- API versie: 2024-01 (in src/lib/shopify.ts)
+
+## Shopify Setup Checklist
+- [x] Shopify store aangemaakt (norvia-6321.myshopify.com)
+- [x] Product aangemaakt: Norvia Gel Glove, €28,95
+- [x] Headless kanaal geïnstalleerd → Storefront API token opgehaald
+- [x] Storefront API connectie getest en werkend
+- [ ] Sendcloud app installeren
+- [ ] Betalingen instellen (iDEAL, Bancontact, etc.)
+- [ ] Bulk kortingen configureren voor B2B
 
 ## Project Structuur
 ```
