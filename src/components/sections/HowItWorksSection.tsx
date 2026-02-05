@@ -21,7 +21,6 @@ export default function HowItWorksSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <ScrollAnimationWrapper className="text-center max-w-2xl mx-auto mb-16">
-          <span className="section-badge">{t('badge')}</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-6 leading-tight">
             {t('title')}
           </h2>

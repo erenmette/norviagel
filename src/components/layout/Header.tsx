@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { useCart } from '@/lib/cart-context';
 import { ShoppingCart, Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 export default function Header() {
   const t = useTranslations('nav');
@@ -17,12 +18,24 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (isLangOpen && !(e.target as Element).closest('[data-lang-switcher]')) {
+        setIsLangOpen(false);
+      }
+    };
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [isLangOpen]);
 
   const switchLocale = (newLocale: string) => {
     router.replace(pathname, { locale: newLocale as 'nl' | 'en' });
@@ -40,8 +53,8 @@ export default function Header() {
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-        isScrolled
-          ? 'glass py-3'
+        isScrolled || isMobileMenuOpen
+          ? 'bg-primary/95 backdrop-blur-xl border-b border-border py-3'
           : 'bg-transparent py-5'
       )}
     >
@@ -49,11 +62,23 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center font-bold text-lg text-white group-hover:glow transition-all duration-300">
+            <div className="relative w-10 h-10 flex-shrink-0">
+              {/* Replace with actual logo: put your logo at /public/images/logo.png */}
+              <Image
+                src="/images/logo.png"
+                alt="Norvia"
+                width={40}
+                height={40}
+                className="w-10 h-10 object-contain"
+                onError={(e) => {
+                  // Fallback to text logo if image not found
+                  (e.target as HTMLImageElement).style.display = 'none';
+                  (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                }}
+              />
+              <div className="hidden w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-accent-dark items-center justify-center font-bold text-lg text-white group-hover:shadow-[0_0_20px_rgba(0,163,255,0.3)] transition-all duration-300">
                 N
               </div>
-              <div className="absolute -inset-1 rounded-lg bg-accent/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <div className="hidden sm:block">
               <span className="text-lg font-bold text-white">Norvia</span>
@@ -85,7 +110,7 @@ export default function Header() {
           {/* Right Actions */}
           <div className="flex items-center gap-4">
             {/* Language Switcher */}
-            <div className="relative">
+            <div className="relative" data-lang-switcher>
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className="flex items-center gap-1.5 text-sm text-text-secondary hover:text-accent transition-colors"
@@ -95,7 +120,7 @@ export default function Header() {
                 <ChevronDown size={14} className={cn('transition-transform', isLangOpen && 'rotate-180')} />
               </button>
               {isLangOpen && (
-                <div className="absolute top-full right-0 mt-2 glass rounded-lg overflow-hidden min-w-[120px]">
+                <div className="absolute top-full right-0 mt-2 bg-primary-dark/95 backdrop-blur-xl border border-border rounded-lg overflow-hidden min-w-[120px] shadow-xl">
                   <button
                     onClick={() => switchLocale('nl')}
                     className={cn(
@@ -125,7 +150,7 @@ export default function Header() {
             >
               <ShoppingCart size={20} />
               {cart && cart.totalQuantity > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-accent text-white text-xs font-bold rounded-full flex items-center justify-center animate-pulse-glow">
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-accent text-white text-xs font-bold rounded-full flex items-center justify-center">
                   {cart.totalQuantity}
                 </span>
               )}
@@ -146,18 +171,27 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 border-t border-border pt-4 space-y-3">
-            {navLinks.map((link) => (
+        {/* Mobile Menu - animated slide down */}
+        <div
+          ref={menuRef}
+          className={cn(
+            'md:hidden overflow-hidden transition-all duration-400 ease-out',
+            isMobileMenuOpen ? 'max-h-80 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'
+          )}
+        >
+          <nav className="pb-4 border-t border-border pt-4 space-y-1">
+            {navLinks.map((link, i) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
-                  'block text-base font-medium py-2 transition-colors',
-                  pathname === link.href ? 'text-accent' : 'text-text-secondary hover:text-accent'
+                  'block text-base font-medium py-3 px-4 rounded-xl transition-all duration-300',
+                  pathname === link.href
+                    ? 'text-accent bg-accent/10'
+                    : 'text-text-secondary hover:text-accent hover:bg-accent/5'
                 )}
+                style={{ transitionDelay: isMobileMenuOpen ? `${i * 50}ms` : '0ms' }}
               >
                 {link.label}
               </Link>
@@ -165,12 +199,12 @@ export default function Header() {
             <Link
               href="/product"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block btn-primary text-center mt-4"
+              className="block btn-primary text-center mt-3"
             >
               {t('buyNow')}
             </Link>
           </nav>
-        )}
+        </div>
       </div>
     </header>
   );

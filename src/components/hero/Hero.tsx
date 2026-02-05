@@ -31,16 +31,9 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Text Content */}
           <div className="space-y-8">
-            {/* Badge */}
-            <div className="section-badge inline-flex">
-              <FlaskConical size={14} />
-              {t('badge')}
-            </div>
-
             {/* Headline */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
-              <span className="text-white">{t('title')}</span>
-              <br />
+              <span className="text-white">{t('title')}</span>{' '}
               <span className="text-accent glow-text">{t('titleAccent')}</span>
             </h1>
 
@@ -63,7 +56,7 @@ export default function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-4">
+            <div className="flex flex-wrap gap-6 pt-4">
               <div className="flex items-center gap-2">
                 <Shield size={18} className="text-accent" />
                 <span className="text-sm text-text-secondary">{t('stats.protection')}</span>

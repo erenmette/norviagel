@@ -16,7 +16,7 @@
   --color-text-muted: #64748B;
   --color-border: rgba(0, 163, 255, 0.15);
   --color-glow: rgba(0, 163, 255, 0.4);
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-sans, 'Space Grotesk', system-ui, -apple-system, sans-serif);
   --font-mono: 'JetBrains Mono', monospace;
 }
 
@@ -28,7 +28,7 @@ html {
 body {
   background: var(--color-primary);
   color: var(--color-text-primary);
-  font-family: var(--font-sans);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
 

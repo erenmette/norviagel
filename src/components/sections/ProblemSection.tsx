@@ -23,7 +23,6 @@ export default function ProblemSection() {
           {/* Problem Side */}
           <ScrollAnimationWrapper direction="right">
             <div>
-              <span className="section-badge mb-6">{t('badge')}</span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-4 leading-tight">
                 {t('title')}
               </h2>
