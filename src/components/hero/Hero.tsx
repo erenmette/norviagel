@@ -84,17 +84,19 @@ export default function Hero() {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-accent/15 blur-3xl" />
 
               {/* Actual bottle image */}
-              <div className="absolute inset-0 flex items-center justify-center animate-float opacity-0 animate-[fadeIn_1s_ease-out_0.3s_forwards]">
-                <Image
-                  src="/images/bottle.png"
-                  alt="Norvia Gel Glove"
-                  width={240}
-                  height={340}
-                  className="select-none"
-                  style={{ filter: 'drop-shadow(0 10px 40px rgba(0,163,255,0.25))' }}
-                  priority
-                  draggable={false}
-                />
+              <div className="absolute inset-0 flex items-center justify-center animate-float">
+                <div className="opacity-0 animate-[fadeIn_1s_ease-out_0.3s_forwards]">
+                  <Image
+                    src="/images/bottle.png"
+                    alt="Norvia Gel Glove"
+                    width={240}
+                    height={340}
+                    className="select-none"
+                    style={{ filter: 'drop-shadow(0 10px 40px rgba(0,163,255,0.25))' }}
+                    priority
+                    draggable={false}
+                  />
+                </div>
               </div>
 
               {/* Floating dots */}
