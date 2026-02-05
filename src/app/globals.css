@@ -293,6 +293,12 @@ body {
   animation: glow-pulse 3s ease-in-out infinite;
 }
 
+/* ===== FADE IN ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 /* ===== BOTTLE ANIMATION ===== */
 @keyframes bottle-rise {
   0% {
@@ -331,15 +337,12 @@ body {
 @keyframes bottle-launch {
   0% {
     transform: translateY(-10vh) scale(1.1) rotate(0deg);
-    opacity: 1;
   }
   30% {
     transform: translateY(-15vh) scale(1.15) rotate(5deg);
-    opacity: 1;
   }
   100% {
-    transform: translateY(-120vh) scale(0.5) rotate(-15deg);
-    opacity: 0;
+    transform: translateY(-150vh) scale(1) rotate(-10deg);
   }
 }
 

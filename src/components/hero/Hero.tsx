@@ -84,7 +84,7 @@ export default function Hero() {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-accent/15 blur-3xl" />
 
               {/* Actual bottle image */}
-              <div className="absolute inset-0 flex items-center justify-center animate-float">
+              <div className="absolute inset-0 flex items-center justify-center animate-float opacity-0 animate-[fadeIn_1s_ease-out_0.3s_forwards]">
                 <Image
                   src="/images/bottle.png"
                   alt="Norvia Gel Glove"
