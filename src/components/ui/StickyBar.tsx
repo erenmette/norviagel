@@ -104,13 +104,13 @@ export default function StickyBar() {
                 </div>
               </div>
 
-              {/* Actions */}
-              <div className="flex items-center gap-2 sm:gap-3 flex-1 sm:flex-none justify-end">
+              {/* Actions — symmetric: try | chat | buy */}
+              <div className="flex items-center gap-2 sm:gap-3 flex-1 sm:flex-none">
                 {/* Try Now Button */}
                 <button
                   onClick={handleTryNow}
                   disabled={bottlePhase !== 'idle'}
-                  className="sticky-glow-btn-alt flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-semibold text-white disabled:opacity-50"
+                  className="sticky-glow-btn-alt flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-8 py-3 rounded-xl text-sm sm:text-base font-semibold text-white disabled:opacity-50"
                 >
                   <Sparkles size={16} />
                   <span>{tryLabel}</span>
@@ -119,17 +119,17 @@ export default function StickyBar() {
                 {/* Chat Button */}
                 <button
                   onClick={() => setIsChatOpen(true)}
-                  className="relative group flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-3 rounded-xl border border-accent/30 bg-accent/5 hover:bg-accent/10 text-accent transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,163,255,0.2)]"
+                  className="relative group flex items-center justify-center gap-2 px-3 sm:px-4 py-3 rounded-xl border border-accent/30 bg-accent/5 hover:bg-accent/10 text-accent transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,163,255,0.2)]"
                 >
                   <MessageCircle size={16} />
-                  <span className="text-xs sm:text-sm font-medium hidden sm:inline">Chat</span>
+                  <span className="text-sm font-medium hidden sm:inline">Chat</span>
                 </button>
 
                 {/* Buy / Checkout Button with glow */}
                 {hasItems ? (
                   <a
                     href={cart.checkoutUrl}
-                    className="sticky-glow-btn flex items-center justify-center gap-2 px-4 sm:px-8 py-3 rounded-xl text-sm sm:text-base font-semibold text-white"
+                    className="sticky-glow-btn flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-8 py-3 rounded-xl text-sm sm:text-base font-semibold text-white"
                   >
                     {t('cart.checkout')}
                     <ArrowRight size={16} />
@@ -138,11 +138,10 @@ export default function StickyBar() {
                   <button
                     onClick={handleAddToCart}
                     disabled={isLoading}
-                    className="sticky-glow-btn flex items-center justify-center gap-2 px-4 sm:px-8 py-3 rounded-xl text-sm sm:text-base font-semibold text-white disabled:opacity-50"
+                    className="sticky-glow-btn flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-8 py-3 rounded-xl text-sm sm:text-base font-semibold text-white disabled:opacity-50"
                   >
                     <ShoppingCart size={16} />
-                    <span className="hidden sm:inline">{isLoading ? '...' : t('cta.buyNow')}</span>
-                    <span className="sm:hidden">{isLoading ? '...' : (locale === 'nl' ? 'Bestellen' : 'Order')}</span>
+                    <span>{isLoading ? '...' : t('cta.buyNow')}</span>
                   </button>
                 )}
               </div>
