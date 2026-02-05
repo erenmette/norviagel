@@ -52,10 +52,10 @@ export default function Header() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+        'fixed left-0 right-0 z-50 transition-all duration-500',
         isScrolled || isMobileMenuOpen
-          ? 'bg-primary/95 backdrop-blur-xl border-b border-border py-3'
-          : 'bg-transparent py-5'
+          ? 'top-0 bg-primary/95 backdrop-blur-xl border-b border-border py-3'
+          : 'top-9 bg-transparent py-5'
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,15 +66,14 @@ export default function Header() {
               <Image
                 src="/images/logo_echt.png"
                 alt="Norvia"
-                width={40}
-                height={40}
-                className="w-10 h-10 object-contain"
-                style={{ filter: 'drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 14px rgba(255,255,255,0.5))' }}
+                width={36}
+                height={36}
+                className="w-9 h-9 object-contain"
               />
             </div>
-            <div className="hidden sm:block">
-              <span className="text-lg font-bold text-white">Norvia</span>
-              <span className="text-lg font-light text-accent ml-1">Gel Glove</span>
+            <div>
+              <span className="text-base font-bold text-white">Norvia</span>
+              <span className="text-base font-light text-accent ml-1">Gel Glove</span>
             </div>
           </Link>
 

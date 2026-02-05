@@ -77,7 +77,7 @@ export default function ChatWidget({ isOpen, onClose }: Props) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100%-2rem)] sm:w-96 max-h-[70vh] flex flex-col rounded-2xl border border-accent/20 bg-primary-dark/98 backdrop-blur-xl shadow-[0_0_40px_rgba(0,163,255,0.15)] overflow-hidden">
+    <div className="fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100%-2rem)] sm:w-96 max-h-[70vh] flex flex-col rounded-2xl border border-accent/20 bg-primary-dark/98 backdrop-blur-xl shadow-[0_0_40px_rgba(0,163,255,0.15)] overflow-hidden animate-[chatOpen_0.3s_ease-out]">
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b border-border bg-surface/50">
         <div className="flex items-center gap-3">
@@ -143,7 +143,7 @@ export default function ChatWidget({ isOpen, onClose }: Props) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={locale === 'nl' ? 'Stel een vraag...' : 'Ask a question...'}
-            className="flex-1 bg-surface rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-text-muted border border-border focus:border-accent/50 focus:outline-none transition-colors"
+            className="flex-1 bg-surface rounded-xl px-4 py-2.5 text-[16px] sm:text-sm text-white placeholder:text-text-muted border border-border focus:border-accent/50 focus:outline-none transition-colors"
             disabled={isLoading}
           />
           <button

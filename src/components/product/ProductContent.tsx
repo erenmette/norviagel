@@ -192,18 +192,18 @@ export default function ProductContent({ images, variantId, price, currencyCode,
 
               {/* Quantity & Add to Cart */}
               <div className="space-y-4 pt-4">
-                <div className="flex flex-col sm:flex-row gap-4">
-                  {/* Animated quantity selector */}
-                  <div className="glass rounded-2xl p-1 flex items-center gap-1 border border-border">
+                <div className="flex items-center gap-4">
+                  {/* Compact quantity selector */}
+                  <div className="glass rounded-xl p-1 flex items-center border border-border shrink-0">
                     <button
                       onClick={() => changeQuantity(quantity - 1)}
-                      className="w-12 h-12 rounded-xl flex items-center justify-center hover:bg-accent/15 active:scale-90 transition-all duration-200 text-text-secondary hover:text-accent"
+                      className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-accent/15 active:scale-90 transition-all duration-200 text-text-secondary hover:text-accent"
                     >
-                      <Minus size={18} />
+                      <Minus size={16} />
                     </button>
-                    <div className="relative w-16 h-12 flex items-center justify-center overflow-hidden">
+                    <div className="w-10 h-10 flex items-center justify-center">
                       <span
-                        className={`text-xl font-bold text-white transition-all duration-200 ${
+                        className={`text-lg font-bold text-white transition-all duration-200 ${
                           isAnimating ? 'scale-125 text-accent' : 'scale-100'
                         }`}
                       >
@@ -212,16 +212,16 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                     </div>
                     <button
                       onClick={() => changeQuantity(quantity + 1)}
-                      className="w-12 h-12 rounded-xl flex items-center justify-center hover:bg-accent/15 active:scale-90 transition-all duration-200 text-text-secondary hover:text-accent"
+                      className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-accent/15 active:scale-90 transition-all duration-200 text-text-secondary hover:text-accent"
                     >
-                      <Plus size={18} />
+                      <Plus size={16} />
                     </button>
                   </div>
 
                   <button
                     onClick={handleAddToCart}
                     disabled={isLoading || !available}
-                    className="flex-1 btn-primary text-base py-4 flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="flex-1 sticky-glow-btn text-base py-3.5 rounded-xl flex items-center justify-center gap-2 font-semibold text-white disabled:opacity-50"
                   >
                     <ShoppingCart size={18} />
                     {isLoading ? '...' : t('addToCart')}
@@ -229,7 +229,7 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                 </div>
 
                 {/* Volume discount progress bar */}
-                <div className="glass rounded-2xl p-5 border border-border relative overflow-hidden">
+                <div className="glass rounded-2xl p-4 sm:p-5 border border-border relative overflow-hidden">
                   {/* Milestone celebration overlay */}
                   {reachedMilestone && (
                     <div className="absolute inset-0 z-10 flex items-center justify-center bg-accent/10 backdrop-blur-sm rounded-2xl animate-pulse">
@@ -243,19 +243,19 @@ export default function ProductContent({ images, variantId, price, currencyCode,
 
                   {/* Current tier info */}
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm text-text-secondary">
+                    <span className="text-xs sm:text-sm text-text-secondary">
                       {currentTier.discount
-                        ? <span className="text-accent font-semibold">{currentTier.discount} korting actief</span>
+                        ? <span className="text-accent font-semibold">{currentTier.discount} korting</span>
                         : <span className="text-text-muted">Geen korting</span>
                       }
                     </span>
-                    <span className="text-sm font-medium text-white">
+                    <span className="text-xs sm:text-sm font-medium text-white">
                       {currentTier.unitPrice.toFixed(2).replace('.', ',')} p/st
                     </span>
                   </div>
 
                   {/* Progress bar */}
-                  <div className="relative h-3 rounded-full bg-surface-light border border-border overflow-hidden">
+                  <div className="relative h-2.5 rounded-full bg-surface-light border border-border overflow-hidden">
                     <div
                       className="absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out"
                       style={{
@@ -266,29 +266,21 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                     />
                   </div>
 
-                  {/* Milestones */}
-                  <div className="relative flex justify-between mt-2">
+                  {/* Milestones as a simple row */}
+                  <div className="flex justify-between mt-3 px-1">
                     {milestones.map((m) => {
                       const reached = quantity >= m.qty;
-                      const pos = (m.qty / maxMilestone) * 100;
                       return (
-                        <div
-                          key={m.qty}
-                          className="flex flex-col items-center"
-                          style={{ position: 'absolute', left: `${pos}%`, transform: 'translateX(-50%)' }}
-                        >
+                        <div key={m.qty} className="flex items-center gap-1.5">
                           <div
-                            className={`w-2.5 h-2.5 rounded-full border-2 transition-all duration-300 ${
+                            className={`w-2 h-2 rounded-full transition-all duration-300 ${
                               reached
-                                ? 'bg-accent border-accent shadow-[0_0_8px_rgba(0,163,255,0.6)]'
-                                : 'bg-surface-light border-border'
+                                ? 'bg-accent shadow-[0_0_6px_rgba(0,163,255,0.6)]'
+                                : 'bg-surface-light border border-border'
                             }`}
                           />
-                          <span className={`text-[10px] mt-1 font-medium ${reached ? 'text-accent' : 'text-text-muted'}`}>
-                            {m.qty}x
-                          </span>
-                          <span className={`text-[10px] ${reached ? 'text-accent/80' : 'text-text-muted/60'}`}>
-                            {m.discount}
+                          <span className={`text-[11px] font-medium ${reached ? 'text-accent' : 'text-text-muted'}`}>
+                            {m.qty}x = {m.discount}
                           </span>
                         </div>
                       );
@@ -297,8 +289,8 @@ export default function ProductContent({ images, variantId, price, currencyCode,
 
                   {/* Next milestone hint */}
                   {nextMilestone && (
-                    <p className="text-xs text-text-muted mt-4 text-center">
-                      Nog <span className="text-accent font-semibold">{nextMilestone.qty - quantity}</span> stuks voor{' '}
+                    <p className="text-[11px] text-text-muted mt-3 text-center">
+                      Nog <span className="text-accent font-semibold">{nextMilestone.qty - quantity}</span> voor{' '}
                       <span className="text-accent font-semibold">{nextMilestone.discount}</span> korting
                     </p>
                   )}
