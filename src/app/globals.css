@@ -293,6 +293,68 @@ body {
   animation: glow-pulse 3s ease-in-out infinite;
 }
 
+/* ===== BOTTLE ANIMATION ===== */
+@keyframes bottle-rise {
+  0% {
+    transform: translateY(100%) scale(0.3);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bottle-shake {
+  0%, 100% { transform: translateY(-10vh) scale(1) rotate(0deg); }
+  5% { transform: translateY(-10vh) scale(1.02) rotate(-3deg); }
+  10% { transform: translateY(-10vh) scale(1.02) rotate(3deg); }
+  15% { transform: translateY(-10vh) scale(1.03) rotate(-4deg); }
+  20% { transform: translateY(-10vh) scale(1.03) rotate(4deg); }
+  25% { transform: translateY(-10vh) scale(1.04) rotate(-5deg); }
+  30% { transform: translateY(-10vh) scale(1.04) rotate(5deg); }
+  35% { transform: translateY(-10vh) scale(1.05) rotate(-6deg); }
+  40% { transform: translateY(-10vh) scale(1.05) rotate(6deg); }
+  45% { transform: translateY(-10vh) scale(1.06) rotate(-7deg); }
+  50% { transform: translateY(-10vh) scale(1.06) rotate(7deg); }
+  55% { transform: translateY(-10vh) scale(1.07) rotate(-8deg); }
+  60% { transform: translateY(-10vh) scale(1.07) rotate(8deg); }
+  65% { transform: translateY(-10vh) scale(1.08) rotate(-9deg); }
+  70% { transform: translateY(-10vh) scale(1.08) rotate(9deg); }
+  75% { transform: translateY(-10vh) scale(1.09) rotate(-10deg); }
+  80% { transform: translateY(-10vh) scale(1.09) rotate(10deg); }
+  85% { transform: translateY(-10vh) scale(1.1) rotate(-8deg); }
+  90% { transform: translateY(-10vh) scale(1.1) rotate(8deg); }
+  95% { transform: translateY(-10vh) scale(1.1) rotate(-5deg); }
+}
+
+@keyframes bottle-launch {
+  0% {
+    transform: translateY(-10vh) scale(1.1) rotate(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: translateY(-15vh) scale(1.15) rotate(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) scale(0.5) rotate(-15deg);
+    opacity: 0;
+  }
+}
+
+.animate-bottle-rise {
+  animation: bottle-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-bottle-shake {
+  animation: bottle-shake 1.2s ease-in-out forwards;
+}
+
+.animate-bottle-launch {
+  animation: bottle-launch 0.8s cubic-bezier(0.5, 0, 1, 0.5) forwards;
+}
+
 /* ===== NOISE TEXTURE OVERLAY ===== */
 .noise::after {
   content: '';
