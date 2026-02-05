@@ -12,11 +12,10 @@ export default function ProductPage() {
   const { addItem, isLoading } = useCart();
   const [quantity, setQuantity] = useState(1);
 
-  // Demo variant ID — will be replaced with real Shopify variant ID
-  const DEMO_VARIANT_ID = 'gid://shopify/ProductVariant/PLACEHOLDER';
+  const VARIANT_ID = 'gid://shopify/ProductVariant/57354473570688';
 
   const handleAddToCart = async () => {
-    await addItem(DEMO_VARIANT_ID, quantity);
+    await addItem(VARIANT_ID, quantity);
   };
 
   const specs = [
