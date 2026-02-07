@@ -1,7 +1,14 @@
 const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
 const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
+const checkoutDomain = process.env.NEXT_PUBLIC_CHECKOUT_DOMAIN || domain;
 
 const endpoint = `https://${domain}/api/2024-01/graphql.json`;
+
+// Replace Shopify checkout URL with custom checkout domain
+function transformCheckoutUrl(url: string): string {
+  if (!url) return url;
+  return url.replace(domain, checkoutDomain);
+}
 
 type ShopifyResponse<T> = {
   data: T;
@@ -86,6 +93,9 @@ const PRODUCT_FRAGMENT = `
           }
         }
       }
+    }
+    volumeTiers: metafield(namespace: "custom", key: "volume_tiers") {
+      value
     }
     seo {
       title
@@ -216,7 +226,11 @@ export async function createCart(variantId: string, quantity: number = 1) {
     },
   });
 
-  return data.cartCreate.cart;
+  const cart = data.cartCreate.cart;
+  if (cart) {
+    cart.checkoutUrl = transformCheckoutUrl(cart.checkoutUrl);
+  }
+  return cart;
 }
 
 export async function addToCart(cartId: string, variantId: string, quantity: number = 1) {
@@ -245,7 +259,11 @@ export async function addToCart(cartId: string, variantId: string, quantity: num
     },
   });
 
-  return data.cartLinesAdd.cart;
+  const cart = data.cartLinesAdd.cart;
+  if (cart) {
+    cart.checkoutUrl = transformCheckoutUrl(cart.checkoutUrl);
+  }
+  return cart;
 }
 
 export async function updateCartLine(cartId: string, lineId: string, quantity: number) {
@@ -274,7 +292,11 @@ export async function updateCartLine(cartId: string, lineId: string, quantity: n
     },
   });
 
-  return data.cartLinesUpdate.cart;
+  const cart = data.cartLinesUpdate.cart;
+  if (cart) {
+    cart.checkoutUrl = transformCheckoutUrl(cart.checkoutUrl);
+  }
+  return cart;
 }
 
 export async function removeFromCart(cartId: string, lineIds: string[]) {
@@ -300,7 +322,11 @@ export async function removeFromCart(cartId: string, lineIds: string[]) {
     variables: { cartId, lineIds },
   });
 
-  return data.cartLinesRemove.cart;
+  const cart = data.cartLinesRemove.cart;
+  if (cart) {
+    cart.checkoutUrl = transformCheckoutUrl(cart.checkoutUrl);
+  }
+  return cart;
 }
 
 export async function getCart(cartId: string) {
@@ -318,10 +344,20 @@ export async function getCart(cartId: string) {
     variables: { cartId },
   });
 
-  return data.cart;
+  const cart = data.cart;
+  if (cart) {
+    cart.checkoutUrl = transformCheckoutUrl(cart.checkoutUrl);
+  }
+  return cart;
 }
 
 // ============ TYPES ============
+
+export type VolumeTier = {
+  min: number;
+  max: number;
+  discount: number; // percentage, e.g. 10 = 10%
+};
 
 export type ShopifyProduct = {
   id: string;
@@ -353,6 +389,7 @@ export type ShopifyProduct = {
       };
     }>;
   };
+  volumeTiers: { value: string } | null;
   seo: { title: string | null; description: string | null };
 };
 
