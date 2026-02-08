@@ -137,6 +137,9 @@ export default function CartDrawer() {
                 {formatPrice(cart.cost.subtotalAmount.amount, cart.cost.subtotalAmount.currencyCode)}
               </span>
             </div>
+            <p className="text-xs text-text-muted text-center">
+              {t('shippingAtCheckout')}
+            </p>
             <a
               href={cart.checkoutUrl}
               className="block w-full btn-primary text-center text-base py-4"

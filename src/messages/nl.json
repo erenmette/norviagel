@@ -210,6 +210,7 @@
     "continueShopping": "Verder winkelen",
     "subtotal": "Subtotaal",
     "checkout": "Naar Checkout",
-    "remove": "Verwijderen"
+    "remove": "Verwijderen",
+    "shippingAtCheckout": "Verzending wordt berekend bij checkout"
   }
 }
