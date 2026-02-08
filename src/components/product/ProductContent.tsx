@@ -148,6 +148,46 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                   ))}
                 </div>
               )}
+
+              {/* Buy Box Button */}
+              <button
+                onClick={async () => {
+                  await addItem(variantId, 12);
+                }}
+                disabled={isLoading || !available}
+                className="mt-6 w-full relative overflow-hidden rounded-2xl p-5 transition-all duration-300 group disabled:opacity-50 hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(34,197,94,0.15) 0%, rgba(34,197,94,0.05) 100%)',
+                  boxShadow: '0 0 30px rgba(34,197,94,0.2), inset 0 1px 0 rgba(255,255,255,0.1)',
+                  border: '2px solid rgba(34,197,94,0.4)',
+                }}
+              >
+                {/* Animated glow effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
+                  background: 'radial-gradient(circle at 50% 50%, rgba(34,197,94,0.3) 0%, transparent 70%)',
+                }} />
+
+                <div className="relative flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500/30 to-green-600/20 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 border border-green-500/30">
+                      <Package size={28} className="text-green-400" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-white font-bold text-xl group-hover:text-green-300 transition-colors">{t('buyBox')}</p>
+                      <p className="text-green-400/80 text-sm font-medium">{t('boxDescription')}</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="bg-green-500/20 rounded-lg px-3 py-2 border border-green-500/30">
+                      <p className="text-green-400 font-bold text-xl">€26,95</p>
+                      <p className="text-green-400/70 text-xs font-medium">{t('perUnit')}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Shine effect on hover */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              </button>
             </div>
           </ScrollAnimationWrapper>
 
