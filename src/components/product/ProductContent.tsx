@@ -5,7 +5,7 @@ import { useState, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import { useCart } from '@/lib/cart-context';
 import { formatPrice } from '@/lib/utils';
-import { Shield, Clock, FlaskConical, Hand, Droplets, CheckCircle2, Minus, Plus, ShoppingCart, Zap, Package, PartyPopper } from 'lucide-react';
+import { Shield, Clock, FlaskConical, Hand, Droplets, CheckCircle2, Minus, Plus, ShoppingCart, Zap, Package } from 'lucide-react';
 import ScrollAnimationWrapper from '@/components/sections/ScrollAnimationWrapper';
 import type { VolumeTier } from '@/lib/shopify';
 
@@ -29,13 +29,17 @@ export default function ProductContent({ images, variantId, price, currencyCode,
   const t = useTranslations('product');
   const { addItem, isLoading } = useCart();
   const [quantity, setQuantity] = useState(1);
+  const [boxQuantity, setBoxQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [reachedMilestone, setReachedMilestone] = useState<string | null>(null);
-  const prevQuantity = useRef(1);
+  const [isBoxAnimating, setIsBoxAnimating] = useState(false);
 
   const handleAddToCart = async () => {
     await addItem(variantId, quantity);
+  };
+
+  const handleAddBoxToCart = async () => {
+    await addItem(variantId, boxQuantity * 12);
   };
 
   const specs = [
@@ -47,45 +51,22 @@ export default function ProductContent({ images, variantId, price, currencyCode,
   ] as const;
 
   const basePrice = parseFloat(price);
-
-  // Build display tiers from Shopify metafield data + base price
-  const displayTiers = useMemo(() => {
-    return volumeTiers.map((tier) => {
-      const unitPrice = basePrice * (1 - tier.discount / 100);
-      const label = tier.max >= 999 ? `${tier.min}+` : `${tier.min}-${tier.max}`;
-      const priceStr = `€${unitPrice.toFixed(2).replace('.', ',')}`;
-      const discountStr = tier.discount > 0 ? `-${tier.discount}%` : '';
-      return { ...tier, label, price: priceStr, unitPrice, discountStr };
-    });
-  }, [volumeTiers, basePrice]);
-
-  // Build milestones from tiers that have a discount
-  const milestones = useMemo(() => {
-    return volumeTiers
-      .filter((tier) => tier.discount > 0)
-      .map((tier) => ({ qty: tier.min, discount: `${tier.discount}%` }));
-  }, [volumeTiers]);
-
-  const maxMilestone = milestones.length > 0 ? milestones[milestones.length - 1].qty : 50;
-  const progressPercent = Math.min((quantity / maxMilestone) * 100, 100);
-  const currentTier = displayTiers.find((t) => quantity >= t.min && quantity <= t.max) || displayTiers[0];
-  const nextMilestone = milestones.find((m) => quantity < m.qty);
+  const boxPrice = 26.95;
+  const boxTotal = (boxQuantity * 12 * boxPrice).toFixed(2).replace('.', ',');
+  const boxSavings = (boxQuantity * 12 * 2).toFixed(2).replace('.', ',');
 
   const changeQuantity = (newQty: number) => {
     const clamped = Math.max(1, newQty);
     setIsAnimating(true);
     setTimeout(() => setIsAnimating(false), 200);
-
-    // Check if crossing a milestone
-    for (const m of milestones) {
-      if (prevQuantity.current < m.qty && clamped >= m.qty) {
-        setReachedMilestone(m.discount);
-        setTimeout(() => setReachedMilestone(null), 2000);
-      }
-    }
-
-    prevQuantity.current = clamped;
     setQuantity(clamped);
+  };
+
+  const changeBoxQuantity = (newQty: number) => {
+    const clamped = Math.max(1, Math.min(10, newQty));
+    setIsBoxAnimating(true);
+    setTimeout(() => setIsBoxAnimating(false), 200);
+    setBoxQuantity(clamped);
   };
 
   const currentImage = images[selectedImage];
@@ -148,46 +129,6 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                   ))}
                 </div>
               )}
-
-              {/* Buy Box Button */}
-              <button
-                onClick={async () => {
-                  await addItem(variantId, 12);
-                }}
-                disabled={isLoading || !available}
-                className="mt-6 w-full relative overflow-hidden rounded-2xl p-5 transition-all duration-300 group disabled:opacity-50 hover:scale-[1.02] active:scale-[0.98]"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(34,197,94,0.15) 0%, rgba(34,197,94,0.05) 100%)',
-                  boxShadow: '0 0 30px rgba(34,197,94,0.2), inset 0 1px 0 rgba(255,255,255,0.1)',
-                  border: '2px solid rgba(34,197,94,0.4)',
-                }}
-              >
-                {/* Animated glow effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
-                  background: 'radial-gradient(circle at 50% 50%, rgba(34,197,94,0.3) 0%, transparent 70%)',
-                }} />
-
-                <div className="relative flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500/30 to-green-600/20 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 border border-green-500/30">
-                      <Package size={28} className="text-green-400" />
-                    </div>
-                    <div className="text-left">
-                      <p className="text-white font-bold text-xl group-hover:text-green-300 transition-colors">{t('buyBox')}</p>
-                      <p className="text-green-400/80 text-sm font-medium">{t('boxDescription')}</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="bg-green-500/20 rounded-lg px-3 py-2 border border-green-500/30">
-                      <p className="text-green-400 font-bold text-xl">€26,95</p>
-                      <p className="text-green-400/70 text-xs font-medium">{t('perUnit')}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Shine effect on hover */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-              </button>
             </div>
           </ScrollAnimationWrapper>
 
@@ -239,9 +180,86 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                 ))}
               </div>
 
-              {/* Quantity & Add to Cart */}
+              {/* Purchase Options */}
               <div className="space-y-4 pt-4">
+
+                {/* Box Purchase Option - Most Prominent */}
+                <div className="rounded-2xl p-4 relative overflow-hidden" style={{
+                  background: 'linear-gradient(135deg, rgba(34,197,94,0.12) 0%, rgba(34,197,94,0.04) 100%)',
+                  border: '2px solid rgba(34,197,94,0.3)',
+                }}>
+                  {/* Best Value Badge */}
+                  <div className="absolute -top-0 -right-0">
+                    <div className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-xl">
+                      BESTE DEAL
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                      <Package size={20} className="text-green-400" />
+                    </div>
+                    <div>
+                      <p className="text-white font-bold">{t('buyBox')}</p>
+                      <p className="text-green-400 text-sm">€26,95 per stuk</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    {/* Box quantity selector */}
+                    <div className="rounded-xl p-1 flex items-center border border-green-500/30 bg-green-500/10 shrink-0">
+                      <button
+                        onClick={() => changeBoxQuantity(boxQuantity - 1)}
+                        className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-green-500/20 active:scale-90 transition-all duration-200 text-green-400"
+                      >
+                        <Minus size={16} />
+                      </button>
+                      <div className="w-12 h-10 flex items-center justify-center">
+                        <span className={`text-lg font-bold text-white transition-all duration-200 ${
+                          isBoxAnimating ? 'scale-125 text-green-400' : 'scale-100'
+                        }`}>
+                          {boxQuantity}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => changeBoxQuantity(boxQuantity + 1)}
+                        className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-green-500/20 active:scale-90 transition-all duration-200 text-green-400"
+                      >
+                        <Plus size={16} />
+                      </button>
+                    </div>
+
+                    <div className="flex-1 text-center">
+                      <p className="text-text-muted text-xs">{boxQuantity} {boxQuantity === 1 ? 'doos' : 'dozen'} = {boxQuantity * 12} stuks</p>
+                    </div>
+
+                    <button
+                      onClick={handleAddBoxToCart}
+                      disabled={isLoading || !available}
+                      className="px-5 py-3 rounded-xl font-bold text-white disabled:opacity-50 transition-all hover:scale-105 active:scale-95"
+                      style={{
+                        background: 'linear-gradient(135deg, #22C55E 0%, #16A34A 100%)',
+                        boxShadow: '0 4px 20px rgba(34,197,94,0.4)',
+                      }}
+                    >
+                      {isLoading ? '...' : `€${boxTotal}`}
+                    </button>
+                  </div>
+
+                  <p className="text-green-400 text-xs mt-2 text-center">
+                    Je bespaart €{boxSavings}!
+                  </p>
+                </div>
+
+                {/* Divider */}
                 <div className="flex items-center gap-4">
+                  <div className="flex-1 h-px bg-border"></div>
+                  <span className="text-text-muted text-sm">of bestel per stuk</span>
+                  <div className="flex-1 h-px bg-border"></div>
+                </div>
+
+                {/* Single Item Purchase */}
+                <div className="flex items-center gap-3">
                   {/* Compact quantity selector */}
                   <div className="glass rounded-xl p-1 flex items-center border border-border shrink-0">
                     <button
@@ -270,77 +288,27 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                   <button
                     onClick={handleAddToCart}
                     disabled={isLoading || !available}
-                    className="flex-1 sticky-glow-btn text-base py-3.5 rounded-xl flex items-center justify-center gap-2 font-semibold text-white disabled:opacity-50"
+                    className="flex-1 btn-primary text-base py-3.5 rounded-xl flex items-center justify-center gap-2 font-semibold text-white disabled:opacity-50"
                   >
                     <ShoppingCart size={18} />
                     {isLoading ? '...' : t('addToCart')}
                   </button>
                 </div>
 
-                {/* Volume discount box */}
-                <div className="glass rounded-2xl p-4 sm:p-5 border border-border relative overflow-hidden">
-                  {/* Milestone celebration overlay */}
-                  {reachedMilestone && (
-                    <div className="absolute inset-0 z-10 flex items-center justify-center bg-accent/10 backdrop-blur-sm rounded-2xl animate-pulse">
-                      <div className="flex items-center gap-2 text-accent font-bold text-lg">
-                        <PartyPopper size={22} />
-                        <span>Volumekorting actief!</span>
-                        <PartyPopper size={22} />
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Volume discount info - clear and prominent */}
-                  {quantity >= 12 ? (
-                    <div className="text-center mb-3">
-                      <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-3 py-1.5 rounded-full text-sm font-semibold">
-                        <CheckCircle2 size={16} />
-                        Volumekorting actief!
-                      </div>
-                      <p className="text-white font-bold text-lg mt-2">
-                        €26,95 <span className="text-text-muted font-normal text-sm">per stuk</span>
-                      </p>
-                      <p className="text-green-400 text-xs">Je bespaart €2,00 per stuk</p>
-                    </div>
-                  ) : (
-                    <div className="text-center mb-3">
-                      <p className="text-text-secondary text-sm mb-1">Bestel 12 of meer stuks:</p>
-                      <p className="text-accent font-bold text-xl">€26,95 <span className="text-text-muted font-normal text-sm">per stuk</span></p>
-                      <p className="text-text-muted text-xs mt-1">i.p.v. €28,95 - bespaar €2,00 per stuk!</p>
-                    </div>
-                  )}
-
-                  {/* Progress bar */}
-                  <div className="relative h-2.5 rounded-full bg-surface-light border border-border overflow-hidden">
-                    <div
-                      className="absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out"
-                      style={{
-                        width: `${Math.min((quantity / 12) * 100, 100)}%`,
-                        background: quantity >= 12
-                          ? 'linear-gradient(90deg, #22C55E, #4ADE80)'
-                          : 'linear-gradient(90deg, #00A3FF, #33B5FF)',
-                        boxShadow: quantity >= 12
-                          ? '0 0 12px rgba(34,197,94,0.5)'
-                          : '0 0 12px rgba(0,163,255,0.5)',
-                      }}
-                    />
+                {/* Volume discount hint for single items */}
+                {quantity < 12 && (
+                  <p className="text-center text-xs text-text-muted">
+                    Tip: Bestel 12+ stuks voor €26,95 per stuk
+                  </p>
+                )}
+                {quantity >= 12 && (
+                  <div className="text-center">
+                    <span className="inline-flex items-center gap-1.5 text-xs text-green-400 bg-green-500/10 px-3 py-1.5 rounded-full">
+                      <CheckCircle2 size={14} />
+                      Volumekorting actief: €26,95 per stuk
+                    </span>
                   </div>
-
-                  {/* Progress text */}
-                  <div className="flex justify-between mt-2 text-xs">
-                    <span className="text-text-muted">{quantity} stuks</span>
-                    {quantity < 12 && (
-                      <span className="text-accent font-medium">
-                        Nog {12 - quantity} voor volumekorting
-                      </span>
-                    )}
-                    {quantity >= 12 && (
-                      <span className="text-green-400 font-medium">
-                        Volumekorting actief
-                      </span>
-                    )}
-                  </div>
-                </div>
+                )}
               </div>
 
               {/* Trust badges */}
@@ -392,24 +360,20 @@ export default function ProductContent({ images, variantId, price, currencyCode,
           <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
             {/* 1-11 stuks */}
             <ScrollAnimationWrapper delay={0}>
-              <div className={`glass rounded-2xl p-6 text-center card-hover transition-all duration-300 ${
-                quantity < 12 ? 'border border-accent/40 shadow-[0_0_20px_rgba(0,163,255,0.15)]' : ''
-              }`}>
+              <div className="glass rounded-2xl p-6 text-center card-hover">
                 <p className="text-sm text-text-muted mb-2">Aantal</p>
                 <p className="text-xl font-bold text-white mb-3">1 - 11</p>
-                <p className={`text-2xl font-bold ${quantity < 12 ? 'text-accent' : 'text-text-secondary'}`}>€28,95</p>
+                <p className="text-2xl font-bold text-accent">€28,95</p>
                 <p className="text-xs text-text-muted mt-1">per stuk</p>
               </div>
             </ScrollAnimationWrapper>
 
             {/* 12+ stuks */}
             <ScrollAnimationWrapper delay={100}>
-              <div className={`glass rounded-2xl p-6 text-center card-hover transition-all duration-300 ${
-                quantity >= 12 ? 'border border-green-500/40 shadow-[0_0_20px_rgba(34,197,94,0.15)]' : ''
-              }`}>
+              <div className="glass rounded-2xl p-6 text-center card-hover border border-green-500/30">
                 <p className="text-sm text-text-muted mb-2">Aantal</p>
-                <p className="text-xl font-bold text-white mb-3">12+</p>
-                <p className={`text-2xl font-bold ${quantity >= 12 ? 'text-green-400' : 'text-text-secondary'}`}>€26,95</p>
+                <p className="text-xl font-bold text-white mb-3">12+ (doos)</p>
+                <p className="text-2xl font-bold text-green-400">€26,95</p>
                 <p className="text-xs text-text-muted mt-1">per stuk</p>
                 <span className="inline-block mt-2 text-xs font-semibold text-green-400 bg-green-400/10 px-2 py-1 rounded-full">
                   Bespaar €2,00
