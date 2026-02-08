@@ -6,8 +6,10 @@ const endpoint = `https://${domain}/api/2024-01/graphql.json`;
 
 // Replace Shopify checkout URL with custom checkout domain
 function transformCheckoutUrl(url: string): string {
-  if (!url) return url;
-  return url.replace(domain, checkoutDomain);
+  if (!url || !checkoutDomain || checkoutDomain === domain) return url;
+  // Shopify uses various subdomains for checkout (e.g., qhh70n-qt.myshopify.com)
+  // Replace any myshopify.com subdomain with our custom checkout domain
+  return url.replace(/https:\/\/[a-z0-9-]+\.myshopify\.com/i, `https://${checkoutDomain}`);
 }
 
 type ShopifyResponse<T> = {
