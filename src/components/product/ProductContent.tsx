@@ -237,72 +237,69 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                   </button>
                 </div>
 
-                {/* Volume discount progress bar */}
+                {/* Volume discount box */}
                 <div className="glass rounded-2xl p-4 sm:p-5 border border-border relative overflow-hidden">
                   {/* Milestone celebration overlay */}
                   {reachedMilestone && (
                     <div className="absolute inset-0 z-10 flex items-center justify-center bg-accent/10 backdrop-blur-sm rounded-2xl animate-pulse">
                       <div className="flex items-center gap-2 text-accent font-bold text-lg">
                         <PartyPopper size={22} />
-                        <span>{reachedMilestone} korting!</span>
+                        <span>Volumekorting actief!</span>
                         <PartyPopper size={22} />
                       </div>
                     </div>
                   )}
 
-                  {/* Current tier info */}
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs sm:text-sm text-text-secondary">
-                      {currentTier.discountStr
-                        ? <span className="text-accent font-semibold">{currentTier.discountStr} korting</span>
-                        : <span className="text-text-muted">Geen korting</span>
-                      }
-                    </span>
-                    <span className="text-xs sm:text-sm font-medium text-white">
-                      {currentTier.unitPrice.toFixed(2).replace('.', ',')} p/st
-                    </span>
-                  </div>
+                  {/* Volume discount info - clear and prominent */}
+                  {quantity >= 12 ? (
+                    <div className="text-center mb-3">
+                      <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-3 py-1.5 rounded-full text-sm font-semibold">
+                        <CheckCircle2 size={16} />
+                        Volumekorting actief!
+                      </div>
+                      <p className="text-white font-bold text-lg mt-2">
+                        €26,95 <span className="text-text-muted font-normal text-sm">per stuk</span>
+                      </p>
+                      <p className="text-green-400 text-xs">Je bespaart €2,00 per stuk</p>
+                    </div>
+                  ) : (
+                    <div className="text-center mb-3">
+                      <p className="text-text-secondary text-sm mb-1">Bestel 12 of meer stuks:</p>
+                      <p className="text-accent font-bold text-xl">€26,95 <span className="text-text-muted font-normal text-sm">per stuk</span></p>
+                      <p className="text-text-muted text-xs mt-1">i.p.v. €28,95 - bespaar €2,00 per stuk!</p>
+                    </div>
+                  )}
 
                   {/* Progress bar */}
                   <div className="relative h-2.5 rounded-full bg-surface-light border border-border overflow-hidden">
                     <div
                       className="absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out"
                       style={{
-                        width: `${progressPercent}%`,
-                        background: 'linear-gradient(90deg, #00A3FF, #33B5FF)',
-                        boxShadow: '0 0 12px rgba(0,163,255,0.5), 0 0 24px rgba(0,163,255,0.2)',
+                        width: `${Math.min((quantity / 12) * 100, 100)}%`,
+                        background: quantity >= 12
+                          ? 'linear-gradient(90deg, #22C55E, #4ADE80)'
+                          : 'linear-gradient(90deg, #00A3FF, #33B5FF)',
+                        boxShadow: quantity >= 12
+                          ? '0 0 12px rgba(34,197,94,0.5)'
+                          : '0 0 12px rgba(0,163,255,0.5)',
                       }}
                     />
                   </div>
 
-                  {/* Milestones as a simple row */}
-                  <div className="flex justify-between mt-3 px-1">
-                    {milestones.map((m) => {
-                      const reached = quantity >= m.qty;
-                      return (
-                        <div key={m.qty} className="flex items-center gap-1.5">
-                          <div
-                            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                              reached
-                                ? 'bg-accent shadow-[0_0_6px_rgba(0,163,255,0.6)]'
-                                : 'bg-surface-light border border-border'
-                            }`}
-                          />
-                          <span className={`text-[11px] font-medium ${reached ? 'text-accent' : 'text-text-muted'}`}>
-                            {m.qty}x = {m.discount}
-                          </span>
-                        </div>
-                      );
-                    })}
+                  {/* Progress text */}
+                  <div className="flex justify-between mt-2 text-xs">
+                    <span className="text-text-muted">{quantity} stuks</span>
+                    {quantity < 12 && (
+                      <span className="text-accent font-medium">
+                        Nog {12 - quantity} voor volumekorting
+                      </span>
+                    )}
+                    {quantity >= 12 && (
+                      <span className="text-green-400 font-medium">
+                        Volumekorting actief
+                      </span>
+                    )}
                   </div>
-
-                  {/* Next milestone hint */}
-                  {nextMilestone && (
-                    <p className="text-[11px] text-text-muted mt-3 text-center">
-                      Nog <span className="text-accent font-semibold">{nextMilestone.qty - quantity}</span> voor{' '}
-                      <span className="text-accent font-semibold">{nextMilestone.discount}</span> korting
-                    </p>
-                  )}
                 </div>
               </div>
 
@@ -352,26 +349,33 @@ export default function ProductContent({ images, variantId, price, currencyCode,
             </div>
           </ScrollAnimationWrapper>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {displayTiers.map((tier, i) => {
-              const isActive = quantity >= tier.min && quantity <= tier.max;
-              return (
-                <ScrollAnimationWrapper key={tier.label} delay={i * 100}>
-                  <div className={`glass rounded-2xl p-6 text-center card-hover transition-all duration-300 ${
-                    isActive ? 'border border-accent/40 shadow-[0_0_20px_rgba(0,163,255,0.15)]' : ''
-                  }`}>
-                    <p className="text-sm text-text-muted mb-2">{t('quantity')}</p>
-                    <p className="text-xl font-bold text-white mb-3">{tier.label}</p>
-                    <p className={`text-2xl font-bold ${isActive ? 'text-accent' : 'text-text-secondary'}`}>{tier.price}</p>
-                    {tier.discountStr && (
-                      <span className="inline-block mt-2 text-xs font-semibold text-green-400 bg-green-400/10 px-2 py-1 rounded-full">
-                        {tier.discountStr}
-                      </span>
-                    )}
-                  </div>
-                </ScrollAnimationWrapper>
-              );
-            })}
+          <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+            {/* 1-11 stuks */}
+            <ScrollAnimationWrapper delay={0}>
+              <div className={`glass rounded-2xl p-6 text-center card-hover transition-all duration-300 ${
+                quantity < 12 ? 'border border-accent/40 shadow-[0_0_20px_rgba(0,163,255,0.15)]' : ''
+              }`}>
+                <p className="text-sm text-text-muted mb-2">Aantal</p>
+                <p className="text-xl font-bold text-white mb-3">1 - 11</p>
+                <p className={`text-2xl font-bold ${quantity < 12 ? 'text-accent' : 'text-text-secondary'}`}>€28,95</p>
+                <p className="text-xs text-text-muted mt-1">per stuk</p>
+              </div>
+            </ScrollAnimationWrapper>
+
+            {/* 12+ stuks */}
+            <ScrollAnimationWrapper delay={100}>
+              <div className={`glass rounded-2xl p-6 text-center card-hover transition-all duration-300 ${
+                quantity >= 12 ? 'border border-green-500/40 shadow-[0_0_20px_rgba(34,197,94,0.15)]' : ''
+              }`}>
+                <p className="text-sm text-text-muted mb-2">Aantal</p>
+                <p className="text-xl font-bold text-white mb-3">12+</p>
+                <p className={`text-2xl font-bold ${quantity >= 12 ? 'text-green-400' : 'text-text-secondary'}`}>€26,95</p>
+                <p className="text-xs text-text-muted mt-1">per stuk</p>
+                <span className="inline-block mt-2 text-xs font-semibold text-green-400 bg-green-400/10 px-2 py-1 rounded-full">
+                  Bespaar €2,00
+                </span>
+              </div>
+            </ScrollAnimationWrapper>
           </div>
         </div>
       </div>
