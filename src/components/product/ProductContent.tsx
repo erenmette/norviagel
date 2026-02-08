@@ -236,18 +236,19 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                     <button
                       onClick={handleAddBoxToCart}
                       disabled={isLoading || !available}
-                      className="px-5 py-3 rounded-xl font-bold text-white disabled:opacity-50 transition-all hover:scale-105 active:scale-95"
+                      className="flex items-center gap-2 px-4 py-3 rounded-xl font-bold text-white disabled:opacity-50 transition-all hover:scale-105 active:scale-95"
                       style={{
                         background: 'linear-gradient(135deg, #22C55E 0%, #16A34A 100%)',
                         boxShadow: '0 4px 20px rgba(34,197,94,0.4)',
                       }}
                     >
+                      <ShoppingCart size={16} />
                       {isLoading ? '...' : `€${boxTotal}`}
                     </button>
                   </div>
 
                   <p className="text-green-400 text-xs mt-2 text-center">
-                    Je bespaart €{boxSavings}!
+                    {t('addBoxToCart')} - {t('save')} €{boxSavings}!
                   </p>
                 </div>
 
