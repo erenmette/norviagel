@@ -65,8 +65,8 @@
         "description": "Volledige tastzin en bewegingsvrijheid. Werk alsof je niets draagt."
       },
       "fast": {
-        "title": "Droogt In 1 Minuut",
-        "description": "Breng aan, wacht 60 seconden, en je bent klaar om te werken."
+        "title": "Droogt In 2 Minuten",
+        "description": "Breng aan, wacht 2 minuten, en je bent klaar om te werken."
       }
     }
   },
@@ -112,7 +112,7 @@
       },
       "dry": {
         "title": "Laten Drogen",
-        "description": "Wacht 1 minuut. De gel droogt op en vormt een transparante beschermlaag."
+        "description": "Wacht 2 minuten. De gel droogt op en vormt een transparante beschermlaag."
       },
       "work": {
         "title": "Aan Het Werk",
@@ -183,7 +183,7 @@
       "duration": "Beschermingsduur",
       "durationValue": "Tot 4 uur",
       "drying": "Droogtijd",
-      "dryingValue": "1 minuut",
+      "dryingValue": "2 minuten",
       "silicone": "Siliconenvrij",
       "siliconeValue": "Ja",
       "application": "Aanbrengen",

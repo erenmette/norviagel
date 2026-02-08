@@ -171,7 +171,7 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                 {[
                   { icon: Shield, text: '4h' },
                   { icon: Droplets, text: 'H₂O' },
-                  { icon: Zap, text: '1 min' },
+                  { icon: Zap, text: '2 min' },
                 ].map((feat, i) => (
                   <div key={i} className="glass-light rounded-xl p-3 text-center">
                     <feat.icon size={18} className="text-accent mx-auto mb-1" />
@@ -315,6 +315,9 @@ export default function ProductContent({ images, variantId, price, currencyCode,
               <div className="flex flex-wrap gap-4 pt-4 text-xs text-text-muted">
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 size={14} className="text-accent" /> Siliconenvrij
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 size={14} className="text-accent" /> Vetvrij
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 size={14} className="text-accent" /> Huidverzorgend

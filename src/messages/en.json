@@ -65,8 +65,8 @@
         "description": "Full tactile feel and freedom of movement. Work as if you're wearing nothing."
       },
       "fast": {
-        "title": "Dries In 1 Minute",
-        "description": "Apply, wait 60 seconds, and you're ready to work."
+        "title": "Dries In 2 Minutes",
+        "description": "Apply, wait 2 minutes, and you're ready to work."
       }
     }
   },
@@ -112,7 +112,7 @@
       },
       "dry": {
         "title": "Let It Dry",
-        "description": "Wait 1 minute. The gel dries and forms a transparent protective layer."
+        "description": "Wait 2 minutes. The gel dries and forms a transparent protective layer."
       },
       "work": {
         "title": "Get To Work",
@@ -183,7 +183,7 @@
       "duration": "Protection duration",
       "durationValue": "Up to 4 hours",
       "drying": "Drying time",
-      "dryingValue": "1 minute",
+      "dryingValue": "2 minutes",
       "silicone": "Silicone-free",
       "siliconeValue": "Yes",
       "application": "Application",

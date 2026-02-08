@@ -2,7 +2,25 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram } from 'lucide-react';
+
+// TikTok icon component (lucide doesn't have one)
+const TikTokIcon = ({ size = 24, className = '' }: { size?: number; className?: string }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+);
+
+const SOCIAL_LINKS = {
+  instagram: 'https://www.instagram.com/norvia_gel_glove_eu/',
+  tiktok: 'https://www.tiktok.com/@www.norviaeu.com',
+};
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -26,9 +44,31 @@ export default function Footer() {
                 <span className="text-lg font-light text-accent ml-1">Gel Glove</span>
               </div>
             </div>
-            <p className="text-text-muted text-sm leading-relaxed">
+            <p className="text-text-muted text-sm leading-relaxed mb-6">
               {t('description')}
             </p>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-3">
+              <a
+                href={SOCIAL_LINKS.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 hover:text-white hover:from-purple-500 hover:to-pink-500 transition-all duration-300 hover:scale-110"
+                aria-label="Instagram"
+              >
+                <Instagram size={18} />
+              </a>
+              <a
+                href={SOCIAL_LINKS.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-white/5 border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                aria-label="TikTok"
+              >
+                <TikTokIcon size={18} />
+              </a>
+            </div>
           </div>
 
           {/* Product Links */}
