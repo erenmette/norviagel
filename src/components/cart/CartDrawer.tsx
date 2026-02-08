@@ -1,18 +1,25 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useCart } from '@/lib/cart-context';
-import { X, Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
+import { X, Minus, Plus, Trash2, ShoppingBag, Tag, CheckCircle2 } from 'lucide-react';
 import { formatPrice } from '@/lib/utils';
 import Image from 'next/image';
 
 export default function CartDrawer() {
   const t = useTranslations('cart');
+  const locale = useLocale();
   const { cart, isOpen, closeCart, updateItem, removeItem, isLoading } = useCart();
 
   if (!isOpen) return null;
 
   const lines = cart?.lines.edges.map((edge) => edge.node) || [];
+  const totalQuantity = cart?.totalQuantity || 0;
+
+  // Calculate savings when 12+ items (€2 per item)
+  const hasVolumeDiscount = totalQuantity >= 12;
+  const savingsAmount = hasVolumeDiscount ? totalQuantity * 2 : 0;
+  const itemsNeededForDiscount = hasVolumeDiscount ? 0 : 12 - totalQuantity;
 
   return (
     <>
@@ -42,6 +49,41 @@ export default function CartDrawer() {
             <X size={20} />
           </button>
         </div>
+
+        {/* Volume Discount Banner */}
+        {lines.length > 0 && (
+          <div className={`mx-6 mt-4 p-3 rounded-xl ${
+            hasVolumeDiscount
+              ? 'bg-green-500/10 border border-green-500/30'
+              : 'bg-accent/10 border border-accent/30'
+          }`}>
+            {hasVolumeDiscount ? (
+              <div className="flex items-center gap-2">
+                <CheckCircle2 size={16} className="text-green-400 shrink-0" />
+                <div className="flex-1">
+                  <p className="text-green-400 text-sm font-semibold">
+                    {locale === 'nl' ? 'Volumekorting actief!' : 'Volume discount active!'}
+                  </p>
+                  <p className="text-green-400/80 text-xs">
+                    {locale === 'nl'
+                      ? `Je bespaart €${savingsAmount.toFixed(2).replace('.', ',')}`
+                      : `You save €${savingsAmount.toFixed(2)}`}
+                  </p>
+                </div>
+                <Tag size={18} className="text-green-400" />
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Tag size={16} className="text-accent shrink-0" />
+                <p className="text-accent text-sm">
+                  {locale === 'nl'
+                    ? `Nog ${itemsNeededForDiscount} ${itemsNeededForDiscount === 1 ? 'stuk' : 'stuks'} voor volumekorting!`
+                    : `Add ${itemsNeededForDiscount} more for volume discount!`}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Cart Items */}
         <div className="flex-1 overflow-y-auto p-6">
@@ -130,7 +172,15 @@ export default function CartDrawer() {
 
         {/* Footer */}
         {lines.length > 0 && cart && (
-          <div className="p-6 border-t border-border space-y-4">
+          <div className="p-6 border-t border-border space-y-3">
+            {/* Savings Display */}
+            {hasVolumeDiscount && (
+              <div className="flex items-center justify-between text-green-400">
+                <span className="text-sm">{locale === 'nl' ? 'Korting' : 'Discount'}</span>
+                <span className="text-sm font-semibold">-€{savingsAmount.toFixed(2).replace('.', ',')}</span>
+              </div>
+            )}
+
             <div className="flex items-center justify-between">
               <span className="text-text-secondary">{t('subtotal')}</span>
               <span className="text-lg font-bold text-white">
