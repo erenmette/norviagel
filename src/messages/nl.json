@@ -23,7 +23,7 @@
     "stats": {
       "protection": "4 uur bescherming",
       "washable": "Afwasbaar met water",
-      "siliconeFree": "Siliconenvrij"
+      "siliconeFree": "Siliconen- en vetvrij"
     }
   },
   "problem": {
@@ -53,7 +53,7 @@
         "description": "Geen zeep nodig. Spoel je handen simpelweg af met water en het vuil glijdt er zo af."
       },
       "siliconeFree": {
-        "title": "Siliconenvrij",
+        "title": "Siliconen- en Vetvrij",
         "description": "Veilig voor alle werkoppervlakken. Geen residu, geen beschadiging van materialen."
       },
       "skinCare": {
@@ -176,6 +176,20 @@
     "perUnit": "per stuk",
     "addBoxToCart": "Voeg doos toe aan winkelwagen",
     "save": "Bespaar",
+    "box": "doos",
+    "boxes": "dozen",
+    "units": "stuks",
+    "badges": {
+      "siliconeFree": "Siliconenvrij",
+      "greaseFree": "Vetvrij",
+      "skinCaring": "Huidverzorgend",
+      "fastDelivery": "Snelle levering"
+    },
+    "bestDeal": "BESTE DEAL",
+    "pricePerUnit": "per stuk",
+    "orOrderPerUnit": "of bestel per stuk",
+    "volumeDiscountTip": "Tip: Bestel 12+ stuks voor €26,95 per stuk",
+    "volumeDiscountActive": "Volumekorting actief: €26,95 per stuk",
     "quantity": "Aantal",
     "inStock": "Op voorraad",
     "outOfStock": "Uitverkocht",
@@ -186,7 +200,7 @@
       "durationValue": "Tot 4 uur",
       "drying": "Droogtijd",
       "dryingValue": "2 minuten",
-      "silicone": "Siliconenvrij",
+      "silicone": "Siliconen- en vetvrij",
       "siliconeValue": "Ja",
       "application": "Aanbrengen",
       "applicationValue": "1 pompje per gebruik",

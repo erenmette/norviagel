@@ -23,7 +23,7 @@
     "stats": {
       "protection": "4 hours protection",
       "washable": "Washable with water",
-      "siliconeFree": "Silicone-free"
+      "siliconeFree": "Silicone & grease-free"
     }
   },
   "problem": {
@@ -53,7 +53,7 @@
         "description": "No soap needed. Simply rinse your hands with water and the dirt slides right off."
       },
       "siliconeFree": {
-        "title": "Silicone-Free",
+        "title": "Silicone & Grease-Free",
         "description": "Safe for all work surfaces. No residue, no damage to materials."
       },
       "skinCare": {
@@ -176,6 +176,20 @@
     "perUnit": "per unit",
     "addBoxToCart": "Add box to cart",
     "save": "Save",
+    "box": "box",
+    "boxes": "boxes",
+    "units": "units",
+    "badges": {
+      "siliconeFree": "Silicone-free",
+      "greaseFree": "Grease-free",
+      "skinCaring": "Skin caring",
+      "fastDelivery": "Fast delivery"
+    },
+    "bestDeal": "BEST DEAL",
+    "pricePerUnit": "per unit",
+    "orOrderPerUnit": "or order per unit",
+    "volumeDiscountTip": "Tip: Order 12+ units for €26.95 per unit",
+    "volumeDiscountActive": "Volume discount active: €26.95 per unit",
     "quantity": "Quantity",
     "inStock": "In stock",
     "outOfStock": "Out of stock",
@@ -186,7 +200,7 @@
       "durationValue": "Up to 4 hours",
       "drying": "Drying time",
       "dryingValue": "2 minutes",
-      "silicone": "Silicone-free",
+      "silicone": "Silicone & grease-free",
       "siliconeValue": "Yes",
       "application": "Application",
       "applicationValue": "1 pump per use",

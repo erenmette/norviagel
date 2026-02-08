@@ -191,7 +191,7 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                   {/* Best Value Badge */}
                   <div className="absolute -top-0 -right-0">
                     <div className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-xl">
-                      BESTE DEAL
+                      {t('bestDeal')}
                     </div>
                   </div>
 
@@ -201,7 +201,7 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                     </div>
                     <div>
                       <p className="text-white font-bold">{t('buyBox')}</p>
-                      <p className="text-green-400 text-sm">€26,95 per stuk</p>
+                      <p className="text-green-400 text-sm">€26,95 {t('pricePerUnit')}</p>
                     </div>
                   </div>
 
@@ -230,7 +230,7 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                     </div>
 
                     <div className="flex-1 text-center">
-                      <p className="text-text-muted text-xs">{boxQuantity} {boxQuantity === 1 ? 'doos' : 'dozen'} = {boxQuantity * 12} stuks</p>
+                      <p className="text-text-muted text-xs">{boxQuantity} {boxQuantity === 1 ? t('box') : t('boxes')} = {boxQuantity * 12} {t('units')}</p>
                     </div>
 
                     <button
@@ -255,7 +255,7 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                 {/* Divider */}
                 <div className="flex items-center gap-4">
                   <div className="flex-1 h-px bg-border"></div>
-                  <span className="text-text-muted text-sm">of bestel per stuk</span>
+                  <span className="text-text-muted text-sm">{t('orOrderPerUnit')}</span>
                   <div className="flex-1 h-px bg-border"></div>
                 </div>
 
@@ -299,14 +299,14 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                 {/* Volume discount hint for single items */}
                 {quantity < 12 && (
                   <p className="text-center text-xs text-text-muted">
-                    Tip: Bestel 12+ stuks voor €26,95 per stuk
+                    {t('volumeDiscountTip')}
                   </p>
                 )}
                 {quantity >= 12 && (
                   <div className="text-center">
                     <span className="inline-flex items-center gap-1.5 text-xs text-green-400 bg-green-500/10 px-3 py-1.5 rounded-full">
                       <CheckCircle2 size={14} />
-                      Volumekorting actief: €26,95 per stuk
+                      {t('volumeDiscountActive')}
                     </span>
                   </div>
                 )}
@@ -315,16 +315,16 @@ export default function ProductContent({ images, variantId, price, currencyCode,
               {/* Trust badges */}
               <div className="flex flex-wrap gap-4 pt-4 text-xs text-text-muted">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-accent" /> Siliconenvrij
+                  <CheckCircle2 size={14} className="text-accent" /> {t('badges.siliconeFree')}
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-accent" /> Vetvrij
+                  <CheckCircle2 size={14} className="text-accent" /> {t('badges.greaseFree')}
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-accent" /> Huidverzorgend
+                  <CheckCircle2 size={14} className="text-accent" /> {t('badges.skinCaring')}
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-accent" /> Snelle levering
+                  <CheckCircle2 size={14} className="text-accent" /> {t('badges.fastDelivery')}
                 </span>
               </div>
             </div>
