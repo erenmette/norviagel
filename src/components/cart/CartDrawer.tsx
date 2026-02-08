@@ -20,6 +20,7 @@ export default function CartDrawer() {
   const hasVolumeDiscount = totalQuantity >= 12;
   const savingsAmount = hasVolumeDiscount ? totalQuantity * 2 : 0;
   const itemsNeededForDiscount = hasVolumeDiscount ? 0 : 12 - totalQuantity;
+  const progressPercent = Math.min((totalQuantity / 12) * 100, 100);
 
   return (
     <>
@@ -50,38 +51,79 @@ export default function CartDrawer() {
           </button>
         </div>
 
-        {/* Volume Discount Banner */}
+        {/* Volume Discount Progress Bar */}
         {lines.length > 0 && (
-          <div className={`mx-6 mt-4 p-3 rounded-xl ${
-            hasVolumeDiscount
-              ? 'bg-green-500/10 border border-green-500/30'
-              : 'bg-accent/10 border border-accent/30'
-          }`}>
-            {hasVolumeDiscount ? (
+          <div className="mx-6 mt-4 p-4 rounded-xl glass-light border border-border">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={16} className="text-green-400 shrink-0" />
-                <div className="flex-1">
-                  <p className="text-green-400 text-sm font-semibold">
-                    {locale === 'nl' ? 'Volumekorting actief!' : 'Volume discount active!'}
-                  </p>
-                  <p className="text-green-400/80 text-xs">
-                    {locale === 'nl'
-                      ? `Je bespaart €${savingsAmount.toFixed(2).replace('.', ',')}`
-                      : `You save €${savingsAmount.toFixed(2)}`}
-                  </p>
-                </div>
-                <Tag size={18} className="text-green-400" />
+                <Tag size={16} className={hasVolumeDiscount ? 'text-green-400' : 'text-accent'} />
+                <span className={`text-sm font-semibold ${hasVolumeDiscount ? 'text-green-400' : 'text-white'}`}>
+                  {hasVolumeDiscount
+                    ? (locale === 'nl' ? 'Volumekorting actief!' : 'Volume discount active!')
+                    : (locale === 'nl' ? 'Volumekorting' : 'Volume discount')}
+                </span>
               </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Tag size={16} className="text-accent shrink-0" />
-                <p className="text-accent text-sm">
+              {hasVolumeDiscount && (
+                <CheckCircle2 size={18} className="text-green-400" />
+              )}
+            </div>
+
+            {/* Glowing Progress Bar */}
+            <div className="relative h-3 rounded-full bg-surface-light border border-border overflow-hidden">
+              {/* Animated background glow */}
+              <div
+                className="absolute inset-0 opacity-30"
+                style={{
+                  background: hasVolumeDiscount
+                    ? 'linear-gradient(90deg, transparent, rgba(34,197,94,0.5), transparent)'
+                    : 'linear-gradient(90deg, transparent, rgba(0,163,255,0.5), transparent)',
+                  animation: 'shimmer 2s infinite',
+                }}
+              />
+
+              {/* Progress fill */}
+              <div
+                className="absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out"
+                style={{
+                  width: `${progressPercent}%`,
+                  background: hasVolumeDiscount
+                    ? 'linear-gradient(90deg, #22C55E, #4ADE80)'
+                    : 'linear-gradient(90deg, #00A3FF, #33B5FF)',
+                  boxShadow: hasVolumeDiscount
+                    ? '0 0 20px rgba(34,197,94,0.6), 0 0 40px rgba(34,197,94,0.3)'
+                    : '0 0 20px rgba(0,163,255,0.6), 0 0 40px rgba(0,163,255,0.3)',
+                }}
+              />
+
+              {/* Animated shine effect */}
+              <div
+                className="absolute inset-y-0 w-20 rounded-full"
+                style={{
+                  left: `${Math.min(progressPercent - 10, 90)}%`,
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
+                  animation: progressPercent > 0 ? 'pulse 1.5s ease-in-out infinite' : 'none',
+                }}
+              />
+            </div>
+
+            {/* Progress text */}
+            <div className="flex justify-between items-center mt-2">
+              <span className="text-text-muted text-xs">
+                {totalQuantity} / 12 {locale === 'nl' ? 'stuks' : 'units'}
+              </span>
+              {hasVolumeDiscount ? (
+                <span className="text-green-400 text-xs font-semibold">
+                  {locale === 'nl' ? 'Je bespaart' : 'You save'} €{savingsAmount.toFixed(2).replace('.', ',')}!
+                </span>
+              ) : (
+                <span className="text-accent text-xs font-medium">
                   {locale === 'nl'
-                    ? `Nog ${itemsNeededForDiscount} ${itemsNeededForDiscount === 1 ? 'stuk' : 'stuks'} voor volumekorting!`
-                    : `Add ${itemsNeededForDiscount} more for volume discount!`}
-                </p>
-              </div>
-            )}
+                    ? `Nog ${itemsNeededForDiscount} voor korting`
+                    : `${itemsNeededForDiscount} more for discount`}
+                </span>
+              )}
+            </div>
           </div>
         )}
 
@@ -199,6 +241,18 @@ export default function CartDrawer() {
           </div>
         )}
       </div>
+
+      {/* CSS for animations */}
+      <style jsx>{`
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(200%); }
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 0.8; }
+        }
+      `}</style>
     </>
   );
 }
