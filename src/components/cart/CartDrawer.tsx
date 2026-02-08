@@ -5,13 +5,36 @@ import { useCart } from '@/lib/cart-context';
 import { X, Minus, Plus, Trash2, ShoppingBag, Tag, CheckCircle2 } from 'lucide-react';
 import { formatPrice } from '@/lib/utils';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export default function CartDrawer() {
   const t = useTranslations('cart');
   const locale = useLocale();
   const { cart, isOpen, closeCart, updateItem, removeItem, isLoading } = useCart();
+  const [isVisible, setIsVisible] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  if (!isOpen) return null;
+  // Handle open/close animations
+  useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+      // Small delay to trigger CSS transition
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsAnimating(true);
+        });
+      });
+    } else {
+      setIsAnimating(false);
+      // Wait for animation to complete before hiding
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  if (!isVisible) return null;
 
   const lines = cart?.lines.edges.map((edge) => edge.node) || [];
   const totalQuantity = cart?.totalQuantity || 0;
@@ -26,12 +49,18 @@ export default function CartDrawer() {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity"
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300 ease-out ${
+          isAnimating ? 'opacity-100' : 'opacity-0'
+        }`}
         onClick={closeCart}
       />
 
       {/* Drawer */}
-      <div className="fixed top-0 right-0 h-full w-full max-w-md z-50 glass border-l border-border flex flex-col">
+      <div
+        className={`fixed top-0 right-0 h-full w-full max-w-md z-50 glass border-l border-border flex flex-col transition-transform duration-300 ease-out ${
+          isAnimating ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-border">
           <div className="flex items-center gap-3">
@@ -45,7 +74,7 @@ export default function CartDrawer() {
           </div>
           <button
             onClick={closeCart}
-            className="p-2 text-text-muted hover:text-white transition-colors"
+            className="p-2 text-text-muted hover:text-white transition-colors hover:rotate-90 duration-200"
           >
             <X size={20} />
           </button>
@@ -53,7 +82,9 @@ export default function CartDrawer() {
 
         {/* Volume Discount Progress Bar */}
         {lines.length > 0 && (
-          <div className="mx-6 mt-4 p-4 rounded-xl glass-light border border-border">
+          <div className={`mx-6 mt-4 p-4 rounded-xl glass-light border border-border transition-all duration-500 delay-100 ${
+            isAnimating ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+          }`}>
             {/* Header */}
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
@@ -130,7 +161,9 @@ export default function CartDrawer() {
         {/* Cart Items */}
         <div className="flex-1 overflow-y-auto p-6">
           {lines.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-center">
+            <div className={`flex flex-col items-center justify-center h-full text-center transition-all duration-500 delay-150 ${
+              isAnimating ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}>
               <ShoppingBag size={48} className="text-text-muted/30 mb-4" />
               <p className="text-text-muted">{t('empty')}</p>
               <button
@@ -142,12 +175,15 @@ export default function CartDrawer() {
             </div>
           ) : (
             <div className="space-y-4">
-              {lines.map((line) => {
+              {lines.map((line, index) => {
                 const image = line.merchandise.product.images.edges[0]?.node;
                 return (
                   <div
                     key={line.id}
-                    className="flex gap-4 p-4 rounded-xl glass-light"
+                    className={`flex gap-4 p-4 rounded-xl glass-light transition-all duration-300 ${
+                      isAnimating ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+                    }`}
+                    style={{ transitionDelay: `${150 + index * 50}ms` }}
                   >
                     {/* Product Image */}
                     <div className="w-20 h-20 rounded-lg bg-surface overflow-hidden flex-shrink-0">
@@ -214,7 +250,9 @@ export default function CartDrawer() {
 
         {/* Footer */}
         {lines.length > 0 && cart && (
-          <div className="p-6 border-t border-border space-y-3">
+          <div className={`p-6 border-t border-border space-y-3 transition-all duration-300 delay-200 ${
+            isAnimating ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
             {/* Savings Display */}
             {hasVolumeDiscount && (
               <div className="flex items-center justify-between text-green-400">
