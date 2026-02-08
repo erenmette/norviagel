@@ -82,6 +82,32 @@ De makkelijkste manier voor een headless storefront:
 - [ ] Sendcloud app installeren
 - [ ] Betalingen instellen (iDEAL, Bancontact, etc.)
 - [ ] Bulk kortingen configureren voor B2B
+- [ ] Volume tiers metafield aanmaken (zie hieronder)
+
+## Shopify Metafield: Volume Tiers (Staffelkorting)
+De staffelkorting op de productpagina wordt dynamisch opgehaald via een Shopify metafield.
+
+### Setup in Shopify Admin:
+1. Ga naar **Settings → Custom data → Products → Add definition**
+2. Name: `Volume Tiers`, Namespace & key: `custom.volume_tiers`
+3. Type: **JSON**
+4. Ga naar **Products → Norvia Gel Glove** → scroll naar Metafields
+5. Vul het `volume_tiers` veld in met dit JSON formaat:
+
+```json
+[
+  { "min": 1, "max": 9, "discount": 0 },
+  { "min": 10, "max": 24, "discount": 10 },
+  { "min": 25, "max": 49, "discount": 15 },
+  { "min": 50, "max": 999, "discount": 20 }
+]
+```
+
+- `min`/`max`: hoeveelheid range
+- `discount`: kortingspercentage (berekend over de basisprijs uit Shopify)
+- De frontend berekent automatisch de eenheidsprijs: `basisprijs * (1 - discount/100)`
+- **Belangrijk**: Maak ook matchende automatische kortingen aan in Shopify Admin → Discounts, zodat de korting daadwerkelijk wordt toegepast bij checkout
+- Als het metafield leeg is of niet bestaat, worden de hardcoded defaults gebruikt (0%, 10%, 15%, 20%)
 
 ## Project Structuur
 ```
@@ -107,14 +133,27 @@ src/
 └── messages/               # NL + EN vertalingen
 ```
 
+## 3D Model (Meshy.ai)
+- **Bestand**: `public/models/bottle.glb` (wordt later toegevoegd)
+- **Bron**: Gemaakt op Meshy.ai
+- **Exportformaat**: GLB (voor web) + USDZ (voor Shopify AR)
+- **Gebruik op 3 plekken**:
+  1. **Hero sectie**: Zwevend en draaiend 3D model (vervangt huidige PNG + CSS animatie)
+  2. **Sticky bar "Nu Proberen" animatie**: 3D bottle model ipv bottle.png
+  3. **How It Works scroll-animatie**: Scroll-triggered animatie met het 3D model
+- **Technologie**: React Three Fiber + Drei (`useGLTF`, `Float` componenten)
+- **Shopify**: GLB ook uploaden als 3D media op het product voor AR preview
+
 ## Toekomstige Features / Roadmap
+- [ ] **3D Bottle Model integreren**: GLB model in hero, sticky bar animatie, en scroll-animatie
 - [ ] **Veo 3 / NanoBanana Visualisatie**: Foto/video van gelpot die gel over een hand giet en een onzichtbare handschoen vormt. Dit wordt een scroll-triggered animatie op de homepage (How It Works sectie).
 - [ ] **GSAP ScrollTrigger**: Geavanceerde scroll-animaties toevoegen met GSAP voor parallax en reveal effecten
-- [ ] **Product 3D Model**: Interactief 3D model van de gelpot (React Three Fiber)
+- [ ] **Verticale Video Shorts**: YouTube shorts op productpagina (verticaal, mooi gepresenteerd)
+- [ ] **Reviews systeem**: Reviews toevoegen (Shopify metafields of Judge.me/Trustpilot)
+- [ ] **B2B Bulk Pricing**: Volumekortingen via Shopify (automatische kortingen of Shopify Functions)
 - [ ] **Meer talen**: Duits, Frans, Spaans etc.
 - [ ] **Blog/Content**: SEO-content over handbescherming
 - [ ] **Klanten portal**: B2B klanten login voor herhaalde bestellingen
-- [ ] **Reviews integratie**: Shopify reviews of Trustpilot
 - [ ] **Custom domein**: Overschakelen van Shopify standaard domein naar eigen domein
 
 ## Contactgegevens

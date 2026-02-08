@@ -1,12 +1,13 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import { useCart } from '@/lib/cart-context';
 import { formatPrice } from '@/lib/utils';
 import { Shield, Clock, FlaskConical, Hand, Droplets, CheckCircle2, Minus, Plus, ShoppingCart, Zap, Package, PartyPopper } from 'lucide-react';
 import ScrollAnimationWrapper from '@/components/sections/ScrollAnimationWrapper';
+import type { VolumeTier } from '@/lib/shopify';
 
 type ProductImage = {
   url: string;
@@ -21,9 +22,10 @@ type Props = {
   price: string;
   currencyCode: string;
   available: boolean;
+  volumeTiers: VolumeTier[];
 };
 
-export default function ProductContent({ images, variantId, price, currencyCode, available }: Props) {
+export default function ProductContent({ images, variantId, price, currencyCode, available, volumeTiers }: Props) {
   const t = useTranslations('product');
   const { addItem, isLoading } = useCart();
   const [quantity, setQuantity] = useState(1);
@@ -44,22 +46,29 @@ export default function ProductContent({ images, variantId, price, currencyCode,
     { key: 'washing', icon: Droplets },
   ] as const;
 
-  const volumeTiers = [
-    { min: 1, max: 9, label: '1-9', price: '€28,95', unitPrice: 28.95, discount: '' },
-    { min: 10, max: 24, label: '10-24', price: '€26,05', unitPrice: 26.05, discount: '-10%' },
-    { min: 25, max: 49, label: '25-49', price: '€24,60', unitPrice: 24.60, discount: '-15%' },
-    { min: 50, max: 999, label: '50+', price: '€23,16', unitPrice: 23.16, discount: '-20%' },
-  ];
+  const basePrice = parseFloat(price);
 
-  const milestones = [
-    { qty: 10, discount: '10%' },
-    { qty: 25, discount: '15%' },
-    { qty: 50, discount: '20%' },
-  ];
+  // Build display tiers from Shopify metafield data + base price
+  const displayTiers = useMemo(() => {
+    return volumeTiers.map((tier) => {
+      const unitPrice = basePrice * (1 - tier.discount / 100);
+      const label = tier.max >= 999 ? `${tier.min}+` : `${tier.min}-${tier.max}`;
+      const priceStr = `€${unitPrice.toFixed(2).replace('.', ',')}`;
+      const discountStr = tier.discount > 0 ? `-${tier.discount}%` : '';
+      return { ...tier, label, price: priceStr, unitPrice, discountStr };
+    });
+  }, [volumeTiers, basePrice]);
 
-  const maxMilestone = 50;
+  // Build milestones from tiers that have a discount
+  const milestones = useMemo(() => {
+    return volumeTiers
+      .filter((tier) => tier.discount > 0)
+      .map((tier) => ({ qty: tier.min, discount: `${tier.discount}%` }));
+  }, [volumeTiers]);
+
+  const maxMilestone = milestones.length > 0 ? milestones[milestones.length - 1].qty : 50;
   const progressPercent = Math.min((quantity / maxMilestone) * 100, 100);
-  const currentTier = volumeTiers.find((t) => quantity >= t.min && quantity <= t.max) || volumeTiers[0];
+  const currentTier = displayTiers.find((t) => quantity >= t.min && quantity <= t.max) || displayTiers[0];
   const nextMilestone = milestones.find((m) => quantity < m.qty);
 
   const changeQuantity = (newQty: number) => {
@@ -244,8 +253,8 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                   {/* Current tier info */}
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs sm:text-sm text-text-secondary">
-                      {currentTier.discount
-                        ? <span className="text-accent font-semibold">{currentTier.discount} korting</span>
+                      {currentTier.discountStr
+                        ? <span className="text-accent font-semibold">{currentTier.discountStr} korting</span>
                         : <span className="text-text-muted">Geen korting</span>
                       }
                     </span>
@@ -344,7 +353,7 @@ export default function ProductContent({ images, variantId, price, currencyCode,
           </ScrollAnimationWrapper>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {volumeTiers.map((tier, i) => {
+            {displayTiers.map((tier, i) => {
               const isActive = quantity >= tier.min && quantity <= tier.max;
               return (
                 <ScrollAnimationWrapper key={tier.label} delay={i * 100}>
@@ -354,9 +363,9 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                     <p className="text-sm text-text-muted mb-2">{t('quantity')}</p>
                     <p className="text-xl font-bold text-white mb-3">{tier.label}</p>
                     <p className={`text-2xl font-bold ${isActive ? 'text-accent' : 'text-text-secondary'}`}>{tier.price}</p>
-                    {tier.discount && (
+                    {tier.discountStr && (
                       <span className="inline-block mt-2 text-xs font-semibold text-green-400 bg-green-400/10 px-2 py-1 rounded-full">
-                        {tier.discount}
+                        {tier.discountStr}
                       </span>
                     )}
                   </div>
