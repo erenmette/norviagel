@@ -394,49 +394,54 @@ export default function ProductContent({ images, variantId, price, currencyCode,
         </div>
 
         {/* Certifications */}
-        <div className="mt-16">
+        <div className="mt-20">
           <ScrollAnimationWrapper>
-            <div className="glass rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-white mb-4 text-center">Gecertificeerde Kwaliteit</h3>
-              <div className="flex flex-wrap items-center justify-center gap-6">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                    <Shield size={24} className="text-accent" />
-                  </div>
-                  <span className="text-xs text-text-muted">ISO 9001</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 text-center">Gecertificeerde Kwaliteit</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+              <div className="glass rounded-2xl p-6 flex flex-col items-center justify-center text-center card-hover min-h-[160px]">
+                <div className="w-20 h-20 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center mb-4">
+                  <Shield size={40} className="text-accent" />
                 </div>
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                    <CheckCircle2 size={24} className="text-accent" />
-                  </div>
-                  <span className="text-xs text-text-muted">GMP</span>
+                <span className="text-sm font-semibold text-white">ISO 9001</span>
+                <span className="text-xs text-text-muted mt-1">Kwaliteitsmanagement</span>
+              </div>
+              <div className="glass rounded-2xl p-6 flex flex-col items-center justify-center text-center card-hover min-h-[160px]">
+                <div className="w-20 h-20 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center mb-4">
+                  <CheckCircle2 size={40} className="text-accent" />
                 </div>
-                <div className="flex flex-col items-center gap-2">
+                <span className="text-sm font-semibold text-white">GMP</span>
+                <span className="text-xs text-text-muted mt-1">Good Manufacturing</span>
+              </div>
+              <div className="glass rounded-2xl p-6 flex flex-col items-center justify-center text-center card-hover min-h-[160px]">
+                <div className="w-20 h-20 mb-4 relative">
                   <Image
                     src="/images/ce keurmerk.png"
-                    alt="CE"
-                    width={48}
-                    height={48}
+                    alt="CE Keurmerk"
+                    fill
                     className="object-contain"
                   />
-                  <span className="text-xs text-text-muted">CE Keurmerk</span>
                 </div>
-                <div className="flex flex-col items-center gap-2">
+                <span className="text-sm font-semibold text-white">CE Keurmerk</span>
+                <span className="text-xs text-text-muted mt-1">Europees keurmerk</span>
+              </div>
+              <div className="glass rounded-2xl p-6 flex flex-col items-center justify-center text-center card-hover min-h-[160px]">
+                <div className="w-20 h-20 mb-4 relative">
                   <Image
                     src="/images/dermatologisch getest certificering.png"
                     alt="Dermatologisch Getest"
-                    width={48}
-                    height={48}
+                    fill
                     className="object-contain rounded-lg"
                   />
-                  <span className="text-xs text-text-muted">Dermatologisch</span>
                 </div>
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center">
-                    <FlaskConical size={24} className="text-green-400" />
-                  </div>
-                  <span className="text-xs text-text-muted">Parabeenvrij</span>
+                <span className="text-sm font-semibold text-white">Dermatologisch</span>
+                <span className="text-xs text-text-muted mt-1">Getest & veilig</span>
+              </div>
+              <div className="glass rounded-2xl p-6 flex flex-col items-center justify-center text-center card-hover min-h-[160px]">
+                <div className="w-20 h-20 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-4">
+                  <FlaskConical size={40} className="text-green-400" />
                 </div>
+                <span className="text-sm font-semibold text-white">Parabeenvrij</span>
+                <span className="text-xs text-text-muted mt-1">Geen parabenen</span>
               </div>
             </div>
           </ScrollAnimationWrapper>
