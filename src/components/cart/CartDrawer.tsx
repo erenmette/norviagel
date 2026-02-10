@@ -271,7 +271,7 @@ export default function CartDrawer() {
               {t('shippingAtCheckout')}
             </p>
             <a
-              href={cart.checkoutUrl}
+              href={`${cart.checkoutUrl}${cart.checkoutUrl.includes('?') ? '&' : '?'}locale=${locale}`}
               className="block w-full btn-primary text-center text-base py-4"
             >
               {t('checkout')}

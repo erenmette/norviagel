@@ -253,7 +253,7 @@ export default function StickyBar() {
                 {/* Buy / Checkout Button with glow */}
                 {hasItems ? (
                   <a
-                    href={cart.checkoutUrl}
+                    href={`${cart.checkoutUrl}${cart.checkoutUrl.includes('?') ? '&' : '?'}locale=${locale}`}
                     className="sticky-glow-btn flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-8 py-3 rounded-xl text-sm sm:text-base font-semibold text-white"
                   >
                     {t('cart.checkout')}
