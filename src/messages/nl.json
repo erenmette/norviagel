@@ -338,5 +338,47 @@
     "checkout": "Naar Checkout",
     "remove": "Verwijderen",
     "shippingAtCheckout": "Verzending wordt berekend bij checkout"
+  },
+  "about": {
+    "title": "Over Ons",
+    "subtitle": "Innovatieve onzichtbare handbescherming voor professionals",
+    "values": {
+      "protection": {
+        "title": "Bescherming",
+        "text": "Tot 4 uur onzichtbare bescherming voor je handen."
+      },
+      "innovation": {
+        "title": "Innovatie",
+        "text": "Siliconenvrije formule die beschermt en verzorgt."
+      },
+      "professionals": {
+        "title": "Professionals",
+        "text": "Ontwikkeld voor professionals in elke sector."
+      },
+      "europe": {
+        "title": "Europa",
+        "text": "Snelle levering door heel Europa."
+      }
+    },
+    "story": {
+      "title": "Ons Verhaal",
+      "p1": "Norvia Gel Glove is ontstaan vanuit een simpele observatie: professionals in de automotive, bouw en industrie verdienen betere handbescherming. Traditionele handschoenen beperken grip en gevoel, scheuren gemakkelijk en zijn niet duurzaam.",
+      "p2": "Wij ontwikkelden een innovatieve gel die een onzichtbare beschermlaag vormt op de huid. Geen beperkingen, geen afval, geen compromissen. Gewoon schone, beschermde en verzorgde handen na elke werkdag.",
+      "p3": "Vanuit Roosendaal leveren wij aan professionals en bedrijven door heel Europa. Of je nu monteur, schilder, kapper of dakdekker bent, Norvia Gel Glove is er voor jou."
+    }
+  },
+  "contact": {
+    "title": "Neem Contact Op",
+    "subtitle": "Heb je vragen over Norvia Gel Glove of wil je een B2B offerte aanvragen? Wij helpen je graag.",
+    "email": "E-mail",
+    "phone": "Telefoon",
+    "address": "Adres",
+    "hours": "Bereikbaar",
+    "hoursValue": "Ma - Vr: 09:00 - 17:00",
+    "b2b": {
+      "title": "B2B Offerte",
+      "text": "Wil je Norvia Gel Glove bestellen voor je team of bedrijf? Stuur ons een e-mail met je gewenste hoeveelheid en wij sturen je een offerte op maat met volumekorting.",
+      "cta": "Offerte Aanvragen"
+    }
   }
 }

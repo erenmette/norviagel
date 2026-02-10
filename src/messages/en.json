@@ -338,5 +338,47 @@
     "checkout": "Proceed to Checkout",
     "remove": "Remove",
     "shippingAtCheckout": "Shipping calculated at checkout"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Innovative invisible hand protection for professionals",
+    "values": {
+      "protection": {
+        "title": "Protection",
+        "text": "Up to 4 hours invisible protection for your hands."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "text": "Silicone-free formula that protects and cares."
+      },
+      "professionals": {
+        "title": "Professionals",
+        "text": "Developed for professionals in every sector."
+      },
+      "europe": {
+        "title": "Europe",
+        "text": "Fast delivery throughout Europe."
+      }
+    },
+    "story": {
+      "title": "Our Story",
+      "p1": "Norvia Gel Glove was born from a simple observation: professionals in automotive, construction and industry deserve better hand protection. Traditional gloves limit grip and feel, tear easily and are not sustainable.",
+      "p2": "We developed an innovative gel that forms an invisible protective layer on the skin. No limitations, no waste, no compromises. Just clean, protected and cared-for hands after every workday.",
+      "p3": "From Roosendaal, we supply professionals and businesses throughout Europe. Whether you're a mechanic, painter, hairdresser or roofer, Norvia Gel Glove is there for you."
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Do you have questions about Norvia Gel Glove or would you like to request a B2B quote? We're happy to help.",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "hours": "Available",
+    "hoursValue": "Mon - Fri: 09:00 - 17:00",
+    "b2b": {
+      "title": "B2B Quote",
+      "text": "Would you like to order Norvia Gel Glove for your team or company? Send us an email with your desired quantity and we'll send you a customized quote with volume discount.",
+      "cta": "Request Quote"
+    }
   }
 }
