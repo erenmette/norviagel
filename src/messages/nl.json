@@ -4,6 +4,10 @@
     "description": "Bescherm je handen met Norvia Gel Glove. Innovatieve gelhandschoen die een onzichtbare beschermlaag vormt tegen olie, verf, vuil en chemicaliën. Tot 4 uur bescherming.",
     "keywords": "gel handschoen, handbescherming, onzichtbare handschoen, Norvia, werkhandschoenen, industriële handbescherming"
   },
+  "deliveryBanner": {
+    "message": "Vandaag besteld voor 15.00u, morgen in huis!",
+    "cutoff": "Alleen geldig voor Nederland"
+  },
   "nav": {
     "home": "Home",
     "product": "Product",
@@ -57,8 +61,8 @@
         "description": "Veilig voor alle werkoppervlakken. Geen residu, geen beschadiging van materialen."
       },
       "skinCare": {
-        "title": "Huidverzorgend",
-        "description": "Beschermt niet alleen, maar verzorgt ook. Voorkomt uitdroging en houdt je handen zacht."
+        "title": "Hydraterend & Verzorgend",
+        "description": "Beschermt niet alleen, maar verzorgt ook. Voorkomt uitdroging en houdt je handen zacht en soepel."
       },
       "grip": {
         "title": "Behoudt Natuurlijke Grip",
@@ -108,11 +112,11 @@
     "steps": {
       "apply": {
         "title": "Aanbrengen",
-        "description": "Breng 1 pompje aan op droge, schone handen en verdeel gelijkmatig."
+        "description": "Breng 1 pompje (circa 1 gram) aan op droge, schone handen en verdeel gelijkmatig."
       },
       "dry": {
         "title": "Laten Drogen",
-        "description": "Wacht 2 minuten. De gel droogt op en vormt een transparante beschermlaag."
+        "description": "Wacht 1-2 minuten. De gel droogt op en vormt een transparante beschermlaag."
       },
       "work": {
         "title": "Aan Het Werk",
@@ -122,6 +126,11 @@
         "title": "Afspoelen",
         "description": "Spoel je handen af met water. Geen zeep nodig, vuil glijdt er zo af."
       }
+    },
+    "tips": {
+      "title": "Belangrijke Tips",
+      "dryProperly": "Zorg dat Norvia na het insmeren goed droogt voor optimale bescherming.",
+      "reapply": "Na elke wasbeurt opnieuw insmeren voor continue bescherming."
     }
   },
   "testimonials": {
@@ -131,12 +140,12 @@
       "jan": {
         "name": "Jan Peeters",
         "role": "Automonteur",
-        "text": "De Norvia Gel Glove is het geld absoluut waard! Ik werk dagelijks met olie en vet, en mijn handen zijn nog nooit zo schoon en verzorgd geweest."
+        "text": "De gel handschoen van Car Parts Roosendaal is een gamechanger! Mijn handen zijn nog nooit zo schoon en verzorgd geweest na een dag sleutelen aan auto's."
       },
       "annelies": {
         "name": "Annelies De Smedt",
         "role": "Schilder",
-        "text": "Ik was sceptisch, maar de gel handschoen werkt echt! Het schoonmaken na een klus is nu zo veel sneller en makkelijker. Mijn handen voelen ook veel zachter aan."
+        "text": "Norvia Gelhandschoen is de oplossing voor blijvend vuile handen. Het is goedkoper, preciezer en fijner werken, met verzorgde handen als resultaat."
       },
       "dirk": {
         "name": "Dirk Martens",
@@ -144,6 +153,84 @@
         "text": "Eindelijk geen droge en geïrriteerde handen meer! De Norvia Gel Glove beschermt mijn handen perfect en is ook nog eens verzorgend."
       }
     }
+  },
+  "certifications": {
+    "badge": "Kwaliteit & Certificeringen",
+    "title": "Gecertificeerde Kwaliteit",
+    "subtitle": "Geproduceerd volgens internationale kwaliteitsnormen voor constante productkwaliteit, veiligheid en betrouwbaarheid",
+    "items": {
+      "iso": {
+        "title": "ISO 9001",
+        "description": "Gecertificeerd kwaliteitsmanagement"
+      },
+      "gmp": {
+        "title": "GMP",
+        "description": "Good Manufacturing Practice"
+      },
+      "ce": {
+        "title": "CE Keurmerk",
+        "description": "Europees kwaliteitskeurmerk"
+      },
+      "dermatological": {
+        "title": "Dermatologisch Getest",
+        "description": "Veilig voor de huid"
+      },
+      "parabenFree": {
+        "title": "Parabeenvrij",
+        "description": "Zonder schadelijke parabenen"
+      }
+    },
+    "trustMessage": "Norvia Gel Glove wordt geproduceerd volgens internationaal erkende kwaliteitsnormen en is ISO-gecertificeerd, wat staat voor constante productkwaliteit, veiligheid en betrouwbaarheid."
+  },
+  "warnings": {
+    "badge": "Belangrijke Informatie",
+    "title": "Voordat Je Begint",
+    "subtitle": "Lees deze informatie voor optimaal gebruik van Norvia Gel Glove",
+    "notEffective": {
+      "title": "Niet Effectief Bij",
+      "description": "De gel lost op bij contact met deze stoffen en biedt geen bescherming:",
+      "items": {
+        "gasoline": "Benzine",
+        "turpentine": "Terpentine",
+        "thinner": "Thinner"
+      }
+    },
+    "notRecommended": {
+      "title": "Niet Gebruiken Bij",
+      "description": "Gebruik Norvia niet in de volgende situaties, net zoals je geen normale zeep zou gebruiken:",
+      "items": {
+        "eczema": "Eczeem",
+        "openWound": "Open wonden",
+        "allergy": "Allergische reacties"
+      }
+    },
+    "disclaimer": "Raadpleeg bij twijfel altijd een arts of dermatoloog. Stop direct met gebruik bij irritatie."
+  },
+  "distributor": {
+    "badge": "Exclusieve Distributeur",
+    "title": "Car Parts Roosendaal",
+    "companyName": "Car Parts Roosendaal",
+    "companyRole": "Exclusieve Europese Distributeur",
+    "description": "Wij zijn Car Parts Roosendaal, de exclusieve en officiële distributeur van Norvia Gelhandschoen binnen Europa. Dankzij onze exclusieve distributiepositie kunnen wij continuïteit, beschikbaarheid en productkennis garanderen.",
+    "benefits": {
+      "original": {
+        "title": "Originele Producten",
+        "description": "100% authentiek"
+      },
+      "exclusive": {
+        "title": "Exclusieve Rechten",
+        "description": "Enige EU distributeur"
+      },
+      "delivery": {
+        "title": "Snelle Levering",
+        "description": "Morgen in huis"
+      },
+      "support": {
+        "title": "Professionele Support",
+        "description": "Deskundig advies"
+      }
+    },
+    "quote": "Wij staan garant voor kwaliteit, betrouwbaarheid en innovatie. Daarmee zijn wij een vaste en betrouwbare partner voor iedereen die op zoek is naar effectieve, verzorgende en gecertificeerde handbescherming."
   },
   "b2b": {
     "badge": "Zakelijk",
@@ -156,11 +243,19 @@
       "support": "Persoonlijke accountmanager"
     },
     "cta": "Vraag Offerte Aan",
-    "ctaEmail": "gelgloves@carpartsroosendaal.nl"
+    "ctaEmail": "gelgloves@carpartsroosendaal.nl",
+    "partners": {
+      "title": "Wij werken samen met:",
+      "items": {
+        "companies": "Bedrijven en industriële gebruikers",
+        "wholesale": "Groothandels en wederverkopers",
+        "workshops": "Werkplaatsen en onderhoudsbedrijven"
+      }
+    }
   },
   "cta": {
     "title": "Klaar Om Je Handen Te Beschermen?",
-    "subtitle": "Bestel vandaag Norvia Gel Glove en ervaar het verschil.",
+    "subtitle": "Bestel vandaag Norvia Gel Glove en ervaar het verschil. Vandaag besteld voor 15.00u, morgen in huis!",
     "price": "Vanaf",
     "addToCart": "In Winkelwagen",
     "buyNow": "Nu Bestellen"
@@ -168,7 +263,8 @@
   "product": {
     "title": "Norvia Gel Glove",
     "subtitle": "De onzichtbare handschoen",
-    "description": "Norvia Gel Glove is een innovatieve handbeschermingsoplossing, speciaal ontworpen voor professioneel en industrieel gebruik. De gel vormt een beschermende laag tegen olie, vuil, vet, roest, verf, kit, secondelijm, purschuim en autolak.",
+    "description": "Norvia Gelhandschoen is een innovatieve handbeschermingsoplossing, speciaal ontwikkeld voor professioneel en industrieel gebruik. Het product vormt een beschermende laag op de huid en voorkomt dat olie, vuil, vet en roest in de handen trekken, terwijl de natuurlijke grip en bewegingsvrijheid behouden blijven. De beschermlaag is bestendig tegen onder andere verf, kit, secondelijm, purschuim en autolak.",
+    "introPrice": "INTRODUCTIEPRIJS",
     "addToCart": "In Winkelwagen",
     "buyNow": "Nu Bestellen",
     "buyBox": "Doos Kopen",
@@ -182,8 +278,10 @@
     "badges": {
       "siliconeFree": "Siliconenvrij",
       "greaseFree": "Vetvrij",
-      "skinCaring": "Huidverzorgend",
-      "fastDelivery": "Snelle levering"
+      "skinCaring": "Hydraterend",
+      "fastDelivery": "Morgen in huis",
+      "dermatological": "Dermatologisch getest",
+      "iso": "ISO 9001"
     },
     "bestDeal": "BESTE DEAL",
     "pricePerUnit": "per stuk",
@@ -199,17 +297,25 @@
       "duration": "Beschermingsduur",
       "durationValue": "Tot 4 uur",
       "drying": "Droogtijd",
-      "dryingValue": "2 minuten",
+      "dryingValue": "1-2 minuten",
       "silicone": "Siliconen- en vetvrij",
       "siliconeValue": "Ja",
       "application": "Aanbrengen",
       "applicationValue": "1 pompje per gebruik",
       "washing": "Verwijderen",
-      "washingValue": "Afwasbaar met water"
+      "washingValue": "Afwasbaar met water",
+      "hydrating": "Hydraterend",
+      "hydratingValue": "Verzorgt de huid"
+    },
+    "keyBenefits": {
+      "title": "3 Belangrijke Punten",
+      "protection": "Beschermt je hand tegen alle vuil (behalve bijtende producten zoals benzine, alcohol)",
+      "treatment": "Behandelt je hand: De gel verzorgt en hydrateert de huid",
+      "clean": "Houdt je hand altijd goed schoon: Eenvoudig af te spoelen met water"
     }
   },
   "footer": {
-    "description": "Norvia Gel Glove. Innovatieve onzichtbare handbescherming voor professionals.",
+    "description": "Norvia Gel Glove. Innovatieve onzichtbare handbescherming voor professionals. Exclusief verkrijgbaar via Car Parts Roosendaal.",
     "product": "Product",
     "company": "Bedrijf",
     "support": "Support",
@@ -221,7 +327,8 @@
     "privacy": "Privacybeleid",
     "terms": "Algemene Voorwaarden",
     "copyright": "© {year} Norvia Gel Glove. Alle rechten voorbehouden.",
-    "address": "Gastelseweg 59, Roosendaal"
+    "address": "Gastelseweg 59, Roosendaal",
+    "exclusiveDistributor": "Exclusieve Europese Distributeur: Car Parts Roosendaal"
   },
   "cart": {
     "title": "Winkelwagen",

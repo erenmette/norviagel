@@ -4,6 +4,10 @@
     "description": "Protect your hands with Norvia Gel Glove. Innovative gel glove that forms an invisible protective barrier against oil, paint, dirt and chemicals. Up to 4 hours protection.",
     "keywords": "gel glove, hand protection, invisible glove, Norvia, work gloves, industrial hand protection"
   },
+  "deliveryBanner": {
+    "message": "Order before 3 PM, delivered tomorrow!",
+    "cutoff": "Only valid for the Netherlands"
+  },
   "nav": {
     "home": "Home",
     "product": "Product",
@@ -57,8 +61,8 @@
         "description": "Safe for all work surfaces. No residue, no damage to materials."
       },
       "skinCare": {
-        "title": "Skin Caring",
-        "description": "Not only protects but also cares. Prevents drying and keeps your hands soft."
+        "title": "Hydrating & Caring",
+        "description": "Not only protects but also cares. Prevents drying and keeps your hands soft and supple."
       },
       "grip": {
         "title": "Maintains Natural Grip",
@@ -108,11 +112,11 @@
     "steps": {
       "apply": {
         "title": "Apply",
-        "description": "Apply 1 pump to dry, clean hands and spread evenly."
+        "description": "Apply 1 pump (about 1 gram) to dry, clean hands and spread evenly."
       },
       "dry": {
         "title": "Let It Dry",
-        "description": "Wait 2 minutes. The gel dries and forms a transparent protective layer."
+        "description": "Wait 1-2 minutes. The gel dries and forms a transparent protective layer."
       },
       "work": {
         "title": "Get To Work",
@@ -122,6 +126,11 @@
         "title": "Rinse Off",
         "description": "Rinse your hands with water. No soap needed, dirt slides right off."
       }
+    },
+    "tips": {
+      "title": "Important Tips",
+      "dryProperly": "Make sure Norvia dries properly after application for optimal protection.",
+      "reapply": "Reapply after each wash for continuous protection."
     }
   },
   "testimonials": {
@@ -131,12 +140,12 @@
       "jan": {
         "name": "Jan Peeters",
         "role": "Auto Mechanic",
-        "text": "The Norvia Gel Glove is absolutely worth the money! I work with oil and grease daily, and my hands have never been this clean and well-maintained."
+        "text": "The gel glove from Car Parts Roosendaal is a gamechanger! My hands have never been this clean and well-maintained after a day of working on cars."
       },
       "annelies": {
         "name": "Annelies De Smedt",
         "role": "Painter",
-        "text": "I was skeptical, but the gel glove really works! Cleaning up after a job is so much faster and easier now. My hands feel much softer too."
+        "text": "Norvia Gel Glove is the solution for permanently dirty hands. It's cheaper, more precise and more comfortable to work with, with cared-for hands as a result."
       },
       "dirk": {
         "name": "Dirk Martens",
@@ -144,6 +153,84 @@
         "text": "Finally no more dry and irritated hands! The Norvia Gel Glove protects my hands perfectly and is also caring."
       }
     }
+  },
+  "certifications": {
+    "badge": "Quality & Certifications",
+    "title": "Certified Quality",
+    "subtitle": "Produced according to international quality standards for consistent product quality, safety and reliability",
+    "items": {
+      "iso": {
+        "title": "ISO 9001",
+        "description": "Certified quality management"
+      },
+      "gmp": {
+        "title": "GMP",
+        "description": "Good Manufacturing Practice"
+      },
+      "ce": {
+        "title": "CE Mark",
+        "description": "European quality mark"
+      },
+      "dermatological": {
+        "title": "Dermatologically Tested",
+        "description": "Safe for skin"
+      },
+      "parabenFree": {
+        "title": "Paraben Free",
+        "description": "Without harmful parabens"
+      }
+    },
+    "trustMessage": "Norvia Gel Glove is produced according to internationally recognized quality standards and is ISO-certified, which stands for consistent product quality, safety and reliability."
+  },
+  "warnings": {
+    "badge": "Important Information",
+    "title": "Before You Start",
+    "subtitle": "Read this information for optimal use of Norvia Gel Glove",
+    "notEffective": {
+      "title": "Not Effective Against",
+      "description": "The gel dissolves on contact with these substances and offers no protection:",
+      "items": {
+        "gasoline": "Gasoline",
+        "turpentine": "Turpentine",
+        "thinner": "Thinner"
+      }
+    },
+    "notRecommended": {
+      "title": "Do Not Use With",
+      "description": "Do not use Norvia in the following situations, just as you wouldn't use regular soap:",
+      "items": {
+        "eczema": "Eczema",
+        "openWound": "Open wounds",
+        "allergy": "Allergic reactions"
+      }
+    },
+    "disclaimer": "If in doubt, always consult a doctor or dermatologist. Stop use immediately if irritation occurs."
+  },
+  "distributor": {
+    "badge": "Exclusive Distributor",
+    "title": "Car Parts Roosendaal",
+    "companyName": "Car Parts Roosendaal",
+    "companyRole": "Exclusive European Distributor",
+    "description": "We are Car Parts Roosendaal, the exclusive and official distributor of Norvia Gel Glove within Europe. Thanks to our exclusive distribution position, we can guarantee continuity, availability and product knowledge.",
+    "benefits": {
+      "original": {
+        "title": "Original Products",
+        "description": "100% authentic"
+      },
+      "exclusive": {
+        "title": "Exclusive Rights",
+        "description": "Only EU distributor"
+      },
+      "delivery": {
+        "title": "Fast Delivery",
+        "description": "Next day delivery"
+      },
+      "support": {
+        "title": "Professional Support",
+        "description": "Expert advice"
+      }
+    },
+    "quote": "We guarantee quality, reliability and innovation. This makes us a steady and reliable partner for everyone looking for effective, caring and certified hand protection."
   },
   "b2b": {
     "badge": "Business",
@@ -156,11 +243,19 @@
       "support": "Personal account manager"
     },
     "cta": "Request Quote",
-    "ctaEmail": "gelgloves@carpartsroosendaal.nl"
+    "ctaEmail": "gelgloves@carpartsroosendaal.nl",
+    "partners": {
+      "title": "We work with:",
+      "items": {
+        "companies": "Companies and industrial users",
+        "wholesale": "Wholesalers and resellers",
+        "workshops": "Workshops and maintenance companies"
+      }
+    }
   },
   "cta": {
     "title": "Ready To Protect Your Hands?",
-    "subtitle": "Order Norvia Gel Glove today and experience the difference.",
+    "subtitle": "Order Norvia Gel Glove today and experience the difference. Order before 3 PM, delivered tomorrow!",
     "price": "From",
     "addToCart": "Add to Cart",
     "buyNow": "Order Now"
@@ -168,7 +263,8 @@
   "product": {
     "title": "Norvia Gel Glove",
     "subtitle": "The invisible glove",
-    "description": "Norvia Gel Glove is an innovative hand protection solution, specially designed for professional and industrial use. The gel forms a protective layer against oil, dirt, grease, rust, paint, sealant, super glue, spray foam and car paint.",
+    "description": "Norvia Gel Glove is an innovative hand protection solution, specially designed for professional and industrial use. The product forms a protective layer on the skin and prevents oil, dirt, grease and rust from penetrating the hands, while maintaining natural grip and freedom of movement. The protective layer is resistant to paint, sealant, super glue, spray foam and car paint.",
+    "introPrice": "INTRODUCTORY PRICE",
     "addToCart": "Add to Cart",
     "buyNow": "Order Now",
     "buyBox": "Buy Box",
@@ -182,8 +278,10 @@
     "badges": {
       "siliconeFree": "Silicone-free",
       "greaseFree": "Grease-free",
-      "skinCaring": "Skin caring",
-      "fastDelivery": "Fast delivery"
+      "skinCaring": "Hydrating",
+      "fastDelivery": "Next day delivery",
+      "dermatological": "Dermatologically tested",
+      "iso": "ISO 9001"
     },
     "bestDeal": "BEST DEAL",
     "pricePerUnit": "per unit",
@@ -199,17 +297,25 @@
       "duration": "Protection duration",
       "durationValue": "Up to 4 hours",
       "drying": "Drying time",
-      "dryingValue": "2 minutes",
+      "dryingValue": "1-2 minutes",
       "silicone": "Silicone & grease-free",
       "siliconeValue": "Yes",
       "application": "Application",
       "applicationValue": "1 pump per use",
       "washing": "Removal",
-      "washingValue": "Washable with water"
+      "washingValue": "Washable with water",
+      "hydrating": "Hydrating",
+      "hydratingValue": "Cares for the skin"
+    },
+    "keyBenefits": {
+      "title": "3 Key Points",
+      "protection": "Protects your hands against all dirt (except corrosive products like gasoline, alcohol)",
+      "treatment": "Treats your hands: The gel cares for and hydrates the skin",
+      "clean": "Keeps your hands always clean: Easy to rinse off with water"
     }
   },
   "footer": {
-    "description": "Norvia Gel Glove. Innovative invisible hand protection for professionals.",
+    "description": "Norvia Gel Glove. Innovative invisible hand protection for professionals. Exclusively available through Car Parts Roosendaal.",
     "product": "Product",
     "company": "Company",
     "support": "Support",
@@ -221,7 +327,8 @@
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
     "copyright": "© {year} Norvia Gel Glove. All rights reserved.",
-    "address": "Gastelseweg 59, Roosendaal"
+    "address": "Gastelseweg 59, Roosendaal",
+    "exclusiveDistributor": "Exclusive European Distributor: Car Parts Roosendaal"
   },
   "cart": {
     "title": "Cart",

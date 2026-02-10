@@ -5,7 +5,7 @@ import { useState, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import { useCart } from '@/lib/cart-context';
 import { formatPrice } from '@/lib/utils';
-import { Shield, Clock, FlaskConical, Hand, Droplets, CheckCircle2, Minus, Plus, ShoppingCart, Zap, Package } from 'lucide-react';
+import { Shield, Clock, FlaskConical, Hand, Droplets, CheckCircle2, Minus, Plus, ShoppingCart, Zap, Package, Truck } from 'lucide-react';
 import ScrollAnimationWrapper from '@/components/sections/ScrollAnimationWrapper';
 import type { VolumeTier } from '@/lib/shopify';
 
@@ -313,18 +313,24 @@ export default function ProductContent({ images, variantId, price, currencyCode,
               </div>
 
               {/* Trust badges */}
-              <div className="flex flex-wrap gap-4 pt-4 text-xs text-text-muted">
-                <span className="flex items-center gap-1.5">
+              <div className="flex flex-wrap gap-3 pt-4 text-xs text-text-muted">
+                <span className="flex items-center gap-1.5 bg-accent/10 px-2 py-1 rounded-full">
                   <CheckCircle2 size={14} className="text-accent" /> {t('badges.siliconeFree')}
                 </span>
-                <span className="flex items-center gap-1.5">
+                <span className="flex items-center gap-1.5 bg-accent/10 px-2 py-1 rounded-full">
                   <CheckCircle2 size={14} className="text-accent" /> {t('badges.greaseFree')}
                 </span>
-                <span className="flex items-center gap-1.5">
+                <span className="flex items-center gap-1.5 bg-accent/10 px-2 py-1 rounded-full">
                   <CheckCircle2 size={14} className="text-accent" /> {t('badges.skinCaring')}
                 </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-accent" /> {t('badges.fastDelivery')}
+                <span className="flex items-center gap-1.5 bg-accent/10 px-2 py-1 rounded-full">
+                  <CheckCircle2 size={14} className="text-accent" /> {t('badges.dermatological')}
+                </span>
+                <span className="flex items-center gap-1.5 bg-accent/10 px-2 py-1 rounded-full">
+                  <CheckCircle2 size={14} className="text-accent" /> {t('badges.iso')}
+                </span>
+                <span className="flex items-center gap-1.5 bg-green-500/10 px-2 py-1 rounded-full text-green-400">
+                  <Truck size={14} /> {t('badges.fastDelivery')}
                 </span>
               </div>
             </div>
@@ -385,6 +391,55 @@ export default function ProductContent({ images, variantId, price, currencyCode,
               </div>
             </ScrollAnimationWrapper>
           </div>
+        </div>
+
+        {/* Certifications */}
+        <div className="mt-16">
+          <ScrollAnimationWrapper>
+            <div className="glass rounded-2xl p-6">
+              <h3 className="text-lg font-semibold text-white mb-4 text-center">Gecertificeerde Kwaliteit</h3>
+              <div className="flex flex-wrap items-center justify-center gap-6">
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                    <Shield size={24} className="text-accent" />
+                  </div>
+                  <span className="text-xs text-text-muted">ISO 9001</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                    <CheckCircle2 size={24} className="text-accent" />
+                  </div>
+                  <span className="text-xs text-text-muted">GMP</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Image
+                    src="/images/ce keurmerk.png"
+                    alt="CE"
+                    width={48}
+                    height={48}
+                    className="object-contain"
+                  />
+                  <span className="text-xs text-text-muted">CE Keurmerk</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Image
+                    src="/images/dermatologisch getest certificering.png"
+                    alt="Dermatologisch Getest"
+                    width={48}
+                    height={48}
+                    className="object-contain rounded-lg"
+                  />
+                  <span className="text-xs text-text-muted">Dermatologisch</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center">
+                    <FlaskConical size={24} className="text-green-400" />
+                  </div>
+                  <span className="text-xs text-text-muted">Parabeenvrij</span>
+                </div>
+              </div>
+            </div>
+          </ScrollAnimationWrapper>
         </div>
       </div>
     </div>

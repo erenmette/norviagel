@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Truck, Instagram } from 'lucide-react';
 
 // TikTok icon component
@@ -22,11 +22,8 @@ const SOCIAL_LINKS = {
 };
 
 export default function AnnouncementBar() {
-  const locale = useLocale();
-
-  const text = locale === 'nl'
-    ? 'Voor 15:00 besteld, morgen in huis binnen Nederland'
-    : 'Order before 15:00, delivered tomorrow in the Netherlands';
+  const t = useTranslations('deliveryBanner');
+  const text = t('message');
 
   return (
     <div className="bg-accent/10 border-b border-accent/15 backdrop-blur-sm">
