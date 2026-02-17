@@ -181,135 +181,144 @@ export default function ProductContent({ images, variantId, price, currencyCode,
               </div>
 
               {/* Purchase Options */}
-              <div className="space-y-4 pt-4">
+              <div className="space-y-5 pt-4">
 
-                {/* Box Purchase Option - Most Prominent */}
-                <div className="rounded-2xl p-4 relative overflow-hidden" style={{
-                  background: 'linear-gradient(135deg, rgba(34,197,94,0.12) 0%, rgba(34,197,94,0.04) 100%)',
-                  border: '2px solid rgba(34,197,94,0.3)',
+                {/* PRIMARY: Single Unit Purchase - Most Prominent */}
+                <div className="rounded-2xl p-5 relative overflow-hidden" style={{
+                  background: 'linear-gradient(135deg, rgba(0,163,255,0.12) 0%, rgba(0,163,255,0.04) 100%)',
+                  border: '2px solid rgba(0,163,255,0.4)',
                 }}>
-                  {/* Best Value Badge */}
+                  {/* Per Stuk Badge */}
                   <div className="absolute -top-0 -right-0">
-                    <div className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-xl">
-                      {t('bestDeal')}
+                    <div className="bg-accent text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-xl uppercase tracking-wide">
+                      {t('perUnitBadge')}
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
-                      <Package size={20} className="text-green-400" />
+                  {/* Header with clear messaging */}
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0 border border-accent/30">
+                      <span className="text-2xl font-black text-accent">1×</span>
                     </div>
-                    <div>
-                      <p className="text-white font-bold">{t('buyBox')}</p>
-                      <p className="text-green-400 text-sm">€26,95 {t('pricePerUnit')}</p>
+                    <div className="flex-1">
+                      <p className="text-white font-bold text-lg">{t('orderOneBottle')}</p>
+                      <p className="text-text-secondary text-sm">{t('noBoxJustUnit')}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-3xl font-black text-accent">{formatPrice(price, currencyCode)}</p>
+                      <p className="text-xs text-text-muted">{t('perUnitInclVat')}</p>
                     </div>
                   </div>
 
+                  {/* Quantity selector + Add to cart */}
                   <div className="flex items-center gap-3">
-                    {/* Box quantity selector */}
-                    <div className="rounded-xl p-1 flex items-center border border-green-500/30 bg-green-500/10 shrink-0">
-                      <button
-                        onClick={() => changeBoxQuantity(boxQuantity - 1)}
-                        className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-green-500/20 active:scale-90 transition-all duration-200 text-green-400"
-                      >
-                        <Minus size={16} />
-                      </button>
-                      <div className="w-12 h-10 flex items-center justify-center">
-                        <span className={`text-lg font-bold text-white transition-all duration-200 ${
-                          isBoxAnimating ? 'scale-125 text-green-400' : 'scale-100'
-                        }`}>
-                          {boxQuantity}
-                        </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-text-secondary font-medium">{t('quantity')}:</span>
+                      <div className="rounded-xl p-1 flex items-center border border-accent/30 bg-accent/10">
+                        <button
+                          onClick={() => changeQuantity(quantity - 1)}
+                          className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-accent/20 active:scale-90 transition-all duration-200 text-accent"
+                        >
+                          <Minus size={16} />
+                        </button>
+                        <div className="w-12 h-10 flex items-center justify-center">
+                          <span className={`text-xl font-bold text-white transition-all duration-200 ${
+                            isAnimating ? 'scale-125 text-accent' : 'scale-100'
+                          }`}>
+                            {quantity}
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => changeQuantity(quantity + 1)}
+                          className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-accent/20 active:scale-90 transition-all duration-200 text-accent"
+                        >
+                          <Plus size={16} />
+                        </button>
                       </div>
-                      <button
-                        onClick={() => changeBoxQuantity(boxQuantity + 1)}
-                        className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-green-500/20 active:scale-90 transition-all duration-200 text-green-400"
-                      >
-                        <Plus size={16} />
-                      </button>
-                    </div>
-
-                    <div className="flex-1 text-center">
-                      <p className="text-text-muted text-xs">{boxQuantity} {boxQuantity === 1 ? t('box') : t('boxes')} = {boxQuantity * 12} {t('units')}</p>
+                      <span className="text-sm text-text-muted">{quantity === 1 ? t('unit') : t('units')}</span>
                     </div>
 
                     <button
-                      onClick={handleAddBoxToCart}
+                      onClick={handleAddToCart}
                       disabled={isLoading || !available}
-                      className="flex items-center gap-2 px-4 py-3 rounded-xl font-bold text-white disabled:opacity-50 transition-all hover:scale-105 active:scale-95"
+                      className="flex-1 flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-bold text-white disabled:opacity-50 transition-all hover:scale-[1.02] active:scale-[0.98]"
                       style={{
-                        background: 'linear-gradient(135deg, #22C55E 0%, #16A34A 100%)',
-                        boxShadow: '0 4px 20px rgba(34,197,94,0.4)',
+                        background: 'linear-gradient(135deg, #00A3FF 0%, #0080CC 100%)',
+                        boxShadow: '0 4px 20px rgba(0,163,255,0.4)',
                       }}
                     >
-                      <ShoppingCart size={16} />
-                      {isLoading ? '...' : `€${boxTotal}`}
+                      <ShoppingCart size={18} />
+                      {isLoading ? '...' : t('addToCart')}
                     </button>
                   </div>
 
-                  <p className="text-green-400 text-xs mt-2 text-center">
-                    {t('addBoxToCart')} - {t('save')} €{boxSavings}!
-                  </p>
-                </div>
-
-                {/* Divider */}
-                <div className="flex items-center gap-4">
-                  <div className="flex-1 h-px bg-border"></div>
-                  <span className="text-text-muted text-sm">{t('orOrderPerUnit')}</span>
-                  <div className="flex-1 h-px bg-border"></div>
-                </div>
-
-                {/* Single Item Purchase */}
-                <div className="flex items-center gap-3">
-                  {/* Compact quantity selector */}
-                  <div className="glass rounded-xl p-1 flex items-center border border-border shrink-0">
-                    <button
-                      onClick={() => changeQuantity(quantity - 1)}
-                      className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-accent/15 active:scale-90 transition-all duration-200 text-text-secondary hover:text-accent"
-                    >
-                      <Minus size={16} />
-                    </button>
-                    <div className="w-10 h-10 flex items-center justify-center">
-                      <span
-                        className={`text-lg font-bold text-white transition-all duration-200 ${
-                          isAnimating ? 'scale-125 text-accent' : 'scale-100'
-                        }`}
-                      >
-                        {quantity}
+                  {/* Volume discount active indicator */}
+                  {quantity >= 12 && (
+                    <div className="mt-3 text-center">
+                      <span className="inline-flex items-center gap-1.5 text-sm text-green-400 bg-green-500/15 px-4 py-2 rounded-full font-medium">
+                        <CheckCircle2 size={16} />
+                        {t('volumeDiscountActive')}
                       </span>
                     </div>
-                    <button
-                      onClick={() => changeQuantity(quantity + 1)}
-                      className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-accent/15 active:scale-90 transition-all duration-200 text-text-secondary hover:text-accent"
-                    >
-                      <Plus size={16} />
-                    </button>
-                  </div>
-
-                  <button
-                    onClick={handleAddToCart}
-                    disabled={isLoading || !available}
-                    className="flex-1 btn-primary text-base py-3.5 rounded-xl flex items-center justify-center gap-2 font-semibold text-white disabled:opacity-50"
-                  >
-                    <ShoppingCart size={18} />
-                    {isLoading ? '...' : t('addToCart')}
-                  </button>
+                  )}
                 </div>
 
-                {/* Volume discount hint for single items */}
-                {quantity < 12 && (
-                  <p className="text-center text-xs text-text-muted">
-                    {t('volumeDiscountTip')}
-                  </p>
-                )}
-                {quantity >= 12 && (
-                  <div className="text-center">
-                    <span className="inline-flex items-center gap-1.5 text-xs text-green-400 bg-green-500/10 px-3 py-1.5 rounded-full">
-                      <CheckCircle2 size={14} />
-                      {t('volumeDiscountActive')}
-                    </span>
+                {/* SECONDARY: Box option as subtle upsell */}
+                <div className="glass-light rounded-xl p-4 border border-border hover:border-green-500/30 transition-colors group">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
+                        <Package size={18} className="text-green-400" />
+                      </div>
+                      <div>
+                        <p className="text-white font-medium text-sm flex items-center gap-2">
+                          {t('boxTip')}
+                        </p>
+                        <p className="text-green-400 text-xs">{t('boxTipSavings')}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <div className="rounded-lg p-0.5 flex items-center border border-green-500/20 bg-green-500/5">
+                        <button
+                          onClick={() => changeBoxQuantity(boxQuantity - 1)}
+                          className="w-8 h-8 rounded-md flex items-center justify-center hover:bg-green-500/15 active:scale-90 transition-all duration-200 text-green-400"
+                        >
+                          <Minus size={14} />
+                        </button>
+                        <div className="w-8 h-8 flex items-center justify-center">
+                          <span className={`text-sm font-bold text-white transition-all duration-200 ${
+                            isBoxAnimating ? 'scale-110 text-green-400' : 'scale-100'
+                          }`}>
+                            {boxQuantity}
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => changeBoxQuantity(boxQuantity + 1)}
+                          className="w-8 h-8 rounded-md flex items-center justify-center hover:bg-green-500/15 active:scale-90 transition-all duration-200 text-green-400"
+                        >
+                          <Plus size={14} />
+                        </button>
+                      </div>
+
+                      <button
+                        onClick={handleAddBoxToCart}
+                        disabled={isLoading || !available}
+                        className="flex items-center gap-2 px-4 py-2.5 rounded-lg font-semibold text-white text-sm disabled:opacity-50 transition-all hover:scale-105 active:scale-95"
+                        style={{
+                          background: 'linear-gradient(135deg, #22C55E 0%, #16A34A 100%)',
+                        }}
+                      >
+                        <ShoppingCart size={14} />
+                        €{boxTotal}
+                      </button>
+                    </div>
                   </div>
-                )}
+                  <p className="text-text-muted text-xs mt-2 pl-13">
+                    {boxQuantity} {boxQuantity === 1 ? t('box') : t('boxes')} = {boxQuantity * 12} {t('units')}
+                  </p>
+                </div>
+
               </div>
 
               {/* Trust badges */}
