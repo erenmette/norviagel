@@ -2,16 +2,62 @@ import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import ScrollAnimationWrapper from '@/components/sections/ScrollAnimationWrapper';
+import type { Metadata } from 'next';
+import { LocalBusinessJsonLd } from '@/components/seo/JsonLd';
+
+const BASE_URL = 'https://norviagel.vercel.app';
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+
+  const metadata = {
+    nl: {
+      title: 'Contact Norvia Gel Glove | Klantenservice & B2B',
+      description: 'Neem contact op met Norvia Gel Glove voor vragen, B2B aanvragen of ondersteuning. Bereikbaar via email, telefoon of bezoek ons in Roosendaal.',
+    },
+    en: {
+      title: 'Contact Norvia Gel Glove | Customer Service & B2B',
+      description: 'Contact Norvia Gel Glove for questions, B2B inquiries or support. Reach us by email, phone or visit us in Roosendaal, Netherlands.',
+    },
+  };
+
+  const { title, description } = metadata[locale as keyof typeof metadata] || metadata.nl;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/contact`,
+      languages: {
+        'nl': `${BASE_URL}/nl/contact`,
+        'en': `${BASE_URL}/en/contact`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${BASE_URL}/${locale}/contact`,
+      siteName: 'Norvia Gel Glove',
+      locale: locale === 'nl' ? 'nl_NL' : 'en_US',
+      type: 'website',
+    },
+  };
+}
+
 export default async function ContactPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <ContactContent />;
+  return (
+    <>
+      <LocalBusinessJsonLd />
+      <ContactContent />
+    </>
+  );
 }
 
 function ContactContent() {

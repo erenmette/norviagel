@@ -8,6 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://norviagel.vercel.app'),
   title: {
     default: 'Norvia Gel Glove - De Onzichtbare Handschoen',
     template: '%s | Norvia Gel Glove',
@@ -21,9 +22,27 @@ export const metadata: Metadata = {
     alternateLocale: 'en_US',
     siteName: 'Norvia Gel Glove',
   },
+  twitter: {
+    card: 'summary_large_image',
+  },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://norviagel.vercel.app',
+    languages: {
+      'nl': 'https://norviagel.vercel.app/nl',
+      'en': 'https://norviagel.vercel.app/en',
+      'x-default': 'https://norviagel.vercel.app/nl',
+    },
   },
 };
 

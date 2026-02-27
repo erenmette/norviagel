@@ -3,10 +3,50 @@ import { setRequestLocale } from 'next-intl/server';
 import { Shield, Users, FlaskConical, Globe } from 'lucide-react';
 import ScrollAnimationWrapper from '@/components/sections/ScrollAnimationWrapper';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+const BASE_URL = 'https://norviagel.vercel.app';
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+
+  const metadata = {
+    nl: {
+      title: 'Over Norvia Gel Glove | Ons Verhaal & Missie',
+      description: 'Leer meer over Norvia Gel Glove - de innovatieve gel die een onzichtbare beschermlaag vormt op je handen. Ontdek onze missie en certificeringen.',
+    },
+    en: {
+      title: 'About Norvia Gel Glove | Our Story & Mission',
+      description: 'Learn more about Norvia Gel Glove - the innovative gel that forms an invisible protective layer on your hands. Discover our mission and certifications.',
+    },
+  };
+
+  const { title, description } = metadata[locale as keyof typeof metadata] || metadata.nl;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/about`,
+      languages: {
+        'nl': `${BASE_URL}/nl/about`,
+        'en': `${BASE_URL}/en/about`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${BASE_URL}/${locale}/about`,
+      siteName: 'Norvia Gel Glove',
+      locale: locale === 'nl' ? 'nl_NL' : 'en_US',
+      type: 'website',
+    },
+  };
+}
 
 export default async function AboutPage({ params }: Props) {
   const { locale } = await params;

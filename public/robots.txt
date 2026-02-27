@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
-Sitemap: https://norvia-gel-glove.myshopify.com/sitemap.xml
+Sitemap: https://norviagel.vercel.app/sitemap.xml

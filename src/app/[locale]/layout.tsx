@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Script from 'next/script';
 import { routing } from '@/i18n/routing';
 import { CartProvider } from '@/lib/cart-context';
 import AnnouncementBar from '@/components/layout/AnnouncementBar';
@@ -44,6 +45,18 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} noise`}>
+        <Script
+          id="microsoft-clarity"
+          strategy="afterInteractive"
+        >
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "vnzyu0hw87");
+          `}
+        </Script>
         <NextIntlClientProvider messages={messages}>
           <CartProvider>
             <div className="fixed top-0 left-0 right-0 z-50">
