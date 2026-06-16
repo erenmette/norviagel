@@ -15,7 +15,7 @@ const UI = {
     title: 'Blog over handbescherming',
     subtitle: 'Praktische tips over een vloeibare handschoen, vuile handen voorkomen, verf van je handen verwijderen en het beschermen van je huid op het werk.',
     readTime: 'min lezen',
-    metaTitle: 'Blog: handbescherming en vloeibare handschoen | Norvia Gel Glove',
+    metaTitle: 'Blog: handbescherming en vloeibare handschoen | Norvia',
     metaDescription: 'Lees praktische tips over handbescherming, een vloeibare handschoen, vuile handen voorkomen en verf van je handen verwijderen voor monteurs, schilders en kappers.',
   },
   en: {
@@ -23,7 +23,7 @@ const UI = {
     title: 'Blog about hand protection',
     subtitle: 'Practical tips about a liquid glove, preventing dirty hands, removing paint from your skin and protecting your hands at work.',
     readTime: 'min read',
-    metaTitle: 'Blog: hand protection and liquid glove | Norvia Gel Glove',
+    metaTitle: 'Blog: hand protection and liquid glove | Norvia',
     metaDescription: 'Read practical tips about hand protection, a liquid glove, preventing dirty hands and removing paint from your hands for mechanics, painters and hairdressers.',
   },
 };

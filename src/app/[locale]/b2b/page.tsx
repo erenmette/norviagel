@@ -12,7 +12,7 @@ type Props = { params: Promise<{ locale: string }> };
 
 const COPY = {
   nl: {
-    metaTitle: 'B2B handbescherming kopen met volumekorting | Norvia Gel Glove',
+    metaTitle: 'B2B handbescherming met volumekorting | Norvia Gel Glove',
     metaDescription: 'Norvia Gel Glove zakelijk: vloeibare handschoen met volumekorting, betaling op factuur en snelle levering in heel Europa. Vraag vrijblijvend een offerte aan.',
     badge: 'Zakelijk',
     title: 'B2B en zakelijke bestellingen',
@@ -46,7 +46,7 @@ const COPY = {
     ],
   },
   en: {
-    metaTitle: 'Buy B2B hand protection with volume discount | Norvia Gel Glove',
+    metaTitle: 'B2B hand protection with volume discount | Norvia',
     metaDescription: 'Norvia Gel Glove for business: a liquid glove with volume discount, payment on invoice and fast delivery across Europe. Request a free quote.',
     badge: 'Business',
     title: 'B2B and business orders',
@@ -133,6 +133,9 @@ export default async function B2BPage({ params }: Props) {
             </a>
             <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-border text-text-secondary hover:text-accent hover:border-accent/40 transition-colors">
               {c.ctaSecondary}
+            </Link>
+            <Link href="/product" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-border text-text-secondary hover:text-accent hover:border-accent/40 transition-colors">
+              {locale === 'en' ? 'View product' : 'Bekijk product'}
             </Link>
           </div>
         </div>

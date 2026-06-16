@@ -13,8 +13,8 @@ const BASE_URL = 'https://norviaeu.com';
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 const UI = {
-  nl: { blog: 'Blog', home: 'Home', back: 'Terug naar blog', readTime: 'min lezen', cta: 'Bekijk product', more: 'Meer artikelen' },
-  en: { blog: 'Blog', home: 'Home', back: 'Back to blog', readTime: 'min read', cta: 'View product', more: 'More articles' },
+  nl: { blog: 'Blog', home: 'Home', back: 'Terug naar blog', readTime: 'min lezen', cta: 'Bekijk product', more: 'Meer artikelen', b2bLine: 'Bestel je voor een team of bedrijf?', b2bLink: 'Bekijk onze B2B-pagina' },
+  en: { blog: 'Blog', home: 'Home', back: 'Back to blog', readTime: 'min read', cta: 'View product', more: 'More articles', b2bLine: 'Ordering for a team or company?', b2bLink: 'See our B2B page' },
 };
 
 export function generateStaticParams() {
@@ -128,6 +128,12 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="mt-10">
           <ArticleBody blocks={c.blocks} ctaLabel={ui.cta} />
         </div>
+
+        {/* B2B note */}
+        <p className="mt-6 text-sm text-text-muted">
+          {ui.b2bLine}{' '}
+          <Link href="/b2b" className="text-accent hover:underline">{ui.b2bLink}</Link>
+        </p>
 
         {/* Back link */}
         <div className="mt-12 pt-8 border-t border-border">

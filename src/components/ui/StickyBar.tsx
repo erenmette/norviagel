@@ -229,7 +229,7 @@ export default function StickyBar() {
                 </div>
               </div>
 
-              {/* Actions — symmetric: try | chat | buy */}
+              {/* Actions - symmetric: try | chat | buy */}
               <div className="flex items-center gap-2 sm:gap-3 flex-1 sm:flex-none">
                 {/* Try Now Button */}
                 <button

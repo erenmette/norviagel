@@ -6,7 +6,7 @@
  *  - name: reviewer name
  *  - role: { nl, en }.job title in both languages
  *  - text: { nl, en }.review text in both languages
- *  - rating: 1–5 stars
+ *  - rating: 1-5 stars
  *  - date: date string (shown as-is)
  *  - verified: show "Verified purchase" badge
  */
