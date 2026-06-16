@@ -5,7 +5,7 @@ import { useState, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import { useCart } from '@/lib/cart-context';
 import { formatPrice } from '@/lib/utils';
-import { Shield, Clock, FlaskConical, Hand, Droplets, CheckCircle2, Minus, Plus, ShoppingCart, Zap, Package, Truck } from 'lucide-react';
+import { Shield, Clock, FlaskConical, Hand, Droplets, CheckCircle2, Minus, Plus, ShoppingCart, Zap, Package, Truck, Play } from 'lucide-react';
 import ScrollAnimationWrapper from '@/components/sections/ScrollAnimationWrapper';
 import type { VolumeTier } from '@/lib/shopify';
 
@@ -71,6 +71,19 @@ export default function ProductContent({ images, variantId, price, currencyCode,
 
   const currentImage = images[selectedImage];
 
+  const scrollToVideos = () => {
+    document.getElementById('videos')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  // Gallery tiles: product images with a video tile inserted as the 3rd slot
+  const videoPoster = '/videos/norvia-1.jpg';
+  const insertAt = Math.min(2, images.length);
+  const galleryTiles: ({ type: 'image'; img: ProductImage; index: number } | { type: 'video' })[] = [
+    ...images.slice(0, insertAt).map((img, i) => ({ type: 'image' as const, img, index: i })),
+    { type: 'video' as const },
+    ...images.slice(insertAt).map((img, i) => ({ type: 'image' as const, img, index: insertAt + i })),
+  ];
+
   return (
     <div className="pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -105,30 +118,62 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                 <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-accent/30 rounded-br-lg" />
               </div>
 
-              {/* Thumbnails */}
-              {images.length > 1 && (
-                <div className="flex gap-3 mt-4">
-                  {images.map((img, i) => (
+              {/* Thumbnails + video gallery link */}
+              <div className="flex flex-wrap gap-3 mt-4">
+                {galleryTiles.map((tile, k) =>
+                  tile.type === 'image' ? (
                     <button
-                      key={i}
-                      onClick={() => setSelectedImage(i)}
+                      key={`img-${tile.index}`}
+                      onClick={() => setSelectedImage(tile.index)}
                       className={`w-20 h-20 rounded-xl overflow-hidden border transition-colors ${
-                        i === selectedImage
+                        tile.index === selectedImage
                           ? 'border-accent glow-sm'
                           : 'border-border glass-light hover:border-accent/50'
                       }`}
                     >
                       <Image
-                        src={img.url}
-                        alt={img.altText || `Product foto ${i + 1}`}
+                        src={tile.img.url}
+                        alt={tile.img.altText || `Product foto ${tile.index + 1}`}
                         width={80}
                         height={80}
                         className="w-full h-full object-cover"
                       />
                     </button>
-                  ))}
-                </div>
-              )}
+                  ) : (
+                    <button
+                      key="video-link"
+                      onClick={scrollToVideos}
+                      aria-label={t('watchVideos')}
+                      className="group relative w-20 h-20 rounded-xl overflow-hidden border-2 border-accent glow-sm animate-pulse-glow"
+                    >
+                      <Image
+                        src={videoPoster}
+                        alt={t('watchVideos')}
+                        width={80}
+                        height={80}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-primary-dark/50 flex items-center justify-center group-hover:bg-primary-dark/30 transition-colors">
+                        <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <Play size={16} className="text-white ml-0.5" fill="white" />
+                        </div>
+                      </div>
+                      <span className="absolute bottom-0 inset-x-0 bg-accent text-white text-[9px] font-bold text-center py-0.5 uppercase tracking-wide">
+                        {t('videosTab')}
+                      </span>
+                    </button>
+                  )
+                )}
+              </div>
+
+              {/* Clear call-out to the video showcase */}
+              <button
+                onClick={scrollToVideos}
+                className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl glass-light border border-accent/30 text-sm font-semibold text-white hover:border-accent hover:glow transition-all"
+              >
+                <Play size={16} className="text-accent" fill="currentColor" />
+                {t('watchVideos')}
+              </button>
             </div>
           </ScrollAnimationWrapper>
 

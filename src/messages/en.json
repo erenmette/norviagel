@@ -134,6 +134,18 @@
       "reapply": "Reapply after each wash for continuous protection."
     }
   },
+  "videos": {
+    "badge": "In action",
+    "title": "See Norvia Gel Glove in action",
+    "subtitle": "Real workshop footage: apply, work, and wash clean in seconds.",
+    "playLabel": "Play video",
+    "swipeHint": "Swipe to see more videos",
+    "prev": "Previous",
+    "next": "Next",
+    "close": "Close",
+    "mute": "Mute",
+    "unmute": "Unmute"
+  },
   "testimonials": {
     "badge": "Reviews",
     "title": "What Our Customers Say",
@@ -320,7 +332,9 @@
       "protection": "Protects your hands against all dirt (except corrosive products like gasoline, alcohol)",
       "treatment": "Treats your hands: The gel cares for and hydrates the skin",
       "clean": "Keeps your hands always clean: Easy to rinse off with water"
-    }
+    },
+    "watchVideos": "Watch the videos",
+    "videosTab": "Videos"
   },
   "footer": {
     "description": "Norvia Gel Glove. Innovative invisible hand protection for professionals. Exclusively available through Car Parts Roosendaal.",

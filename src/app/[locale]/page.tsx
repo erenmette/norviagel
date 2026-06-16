@@ -6,6 +6,7 @@ import FeaturesSection from '@/components/sections/FeaturesSection';
 import CertificationsSection from '@/components/sections/CertificationsSection';
 import IndustriesSection from '@/components/sections/IndustriesSection';
 import HowItWorksSection from '@/components/sections/HowItWorksSection';
+import VideoShowcase from '@/components/sections/VideoShowcase';
 import WarningsSection from '@/components/sections/WarningsSection';
 import DistributorSection from '@/components/sections/DistributorSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
@@ -66,6 +67,7 @@ export default async function HomePage({ params }: Props) {
     <>
       <OrganizationJsonLd />
       <Hero />
+      <VideoShowcase />
       <ProblemSection />
       <FeaturesSection />
       <CertificationsSection />

@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { getProduct } from '@/lib/shopify';
 import type { VolumeTier } from '@/lib/shopify';
 import ProductContent from '@/components/product/ProductContent';
+import VideoShowcase from '@/components/sections/VideoShowcase';
 import { ProductJsonLd } from '@/components/seo/JsonLd';
 import { getAllPosts, getPostContent } from '@/lib/blog';
 import { Link } from '@/i18n/navigation';
@@ -150,6 +151,8 @@ export default async function ProductPage({ params }: Props) {
         available={available}
         volumeTiers={volumeTiers}
       />
+
+      <VideoShowcase />
 
       {/* Internal links to blog content and B2B for SEO and discovery */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
