@@ -15,6 +15,10 @@ export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const { cart, openCart } = useCart();
+  const isProductPage = pathname === '/product';
+  const scrollToOrder = () => {
+    document.getElementById('order')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -148,9 +152,15 @@ export default function Header() {
             </button>
 
             {/* CTA Button (Desktop) */}
-            <Link href="/product" className="hidden md:block btn-primary text-sm">
-              {t('buyNow')}
-            </Link>
+            {isProductPage ? (
+              <button onClick={scrollToOrder} className="hidden md:block btn-primary text-sm">
+                {t('buyNow')}
+              </button>
+            ) : (
+              <Link href="/product" className="hidden md:block btn-primary text-sm">
+                {t('buyNow')}
+              </Link>
+            )}
 
             {/* Mobile Menu Toggle */}
             <button
@@ -187,13 +197,25 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/product"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block btn-primary text-center mt-3"
-            >
-              {t('buyNow')}
-            </Link>
+            {isProductPage ? (
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  scrollToOrder();
+                }}
+                className="block w-full btn-primary text-center mt-3"
+              >
+                {t('buyNow')}
+              </button>
+            ) : (
+              <Link
+                href="/product"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block btn-primary text-center mt-3"
+              >
+                {t('buyNow')}
+              </Link>
+            )}
           </nav>
         </div>
       </div>

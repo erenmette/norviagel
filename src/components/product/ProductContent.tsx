@@ -181,7 +181,7 @@ export default function ProductContent({ images, variantId, price, currencyCode,
               </div>
 
               {/* Purchase Options */}
-              <div className="space-y-5 pt-4">
+              <div id="order" className="space-y-5 pt-4 scroll-mt-28">
 
                 {/* PRIMARY: Single Unit Purchase - Most Prominent */}
                 <div className="rounded-2xl p-5 relative overflow-hidden" style={{
