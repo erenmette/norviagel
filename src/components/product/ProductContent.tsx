@@ -75,7 +75,7 @@ export default function ProductContent({ images, variantId, price, currencyCode,
     <div className="pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Product Hero */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left - Product Image */}
           <ScrollAnimationWrapper direction="right">
             <div className="relative">
@@ -189,11 +189,9 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                   border: '2px solid rgba(0,163,255,0.4)',
                 }}>
                   {/* Per Stuk Badge */}
-                  <div className="absolute -top-0 -right-0">
-                    <div className="bg-accent text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-xl uppercase tracking-wide">
-                      {t('perUnitBadge')}
-                    </div>
-                  </div>
+                  <span className="inline-flex bg-accent text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">
+                    {t('perUnitBadge')}
+                  </span>
 
                   {/* Header with clear messaging */}
                   <div className="flex items-start gap-4 mb-4">

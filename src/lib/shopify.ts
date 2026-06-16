@@ -1,15 +1,13 @@
 const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
 const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
-const checkoutDomain = process.env.NEXT_PUBLIC_CHECKOUT_DOMAIN || domain;
-
 const endpoint = `https://${domain}/api/2024-01/graphql.json`;
 
-// Replace Shopify checkout URL with custom checkout domain
+// Keep Shopify's native checkout domain, which always has a valid SSL certificate.
+// A branded checkout domain (e.g. checkout.norviaeurop.com via NEXT_PUBLIC_CHECKOUT_DOMAIN)
+// only works once it is fully set up in Shopify with a valid certificate. Until then,
+// rewriting to it breaks checkout with ERR_CERT_AUTHORITY_INVALID, so we leave the URL as-is.
 function transformCheckoutUrl(url: string): string {
-  if (!url || !checkoutDomain || checkoutDomain === domain) return url;
-  // Shopify uses various subdomains for checkout (e.g., qhh70n-qt.myshopify.com)
-  // Replace any myshopify.com subdomain with our custom checkout domain
-  return url.replace(/https:\/\/[a-z0-9-]+\.myshopify\.com/i, `https://${checkoutDomain}`);
+  return url;
 }
 
 type ShopifyResponse<T> = {
