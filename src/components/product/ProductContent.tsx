@@ -254,7 +254,7 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                   </div>
 
                   {/* Quantity selector + Add to cart */}
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                     <div className="flex items-center gap-2">
                       <span className="text-sm text-text-secondary font-medium">{t('quantity')}:</span>
                       <div className="rounded-xl p-1 flex items-center border border-accent/30 bg-accent/10">
@@ -284,7 +284,7 @@ export default function ProductContent({ images, variantId, price, currencyCode,
                     <button
                       onClick={handleAddToCart}
                       disabled={isLoading || !available}
-                      className="flex-1 flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-bold text-white disabled:opacity-50 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      className="w-full sm:flex-1 flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-bold text-white disabled:opacity-50 transition-all hover:scale-[1.02] active:scale-[0.98]"
                       style={{
                         background: 'linear-gradient(135deg, #00A3FF 0%, #0080CC 100%)',
                         boxShadow: '0 4px 20px rgba(0,163,255,0.4)',
