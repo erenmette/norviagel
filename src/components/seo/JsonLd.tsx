@@ -66,7 +66,7 @@ interface OrganizationJsonLdProps {
 
 export function OrganizationJsonLd({
   name = 'Norvia Gel Glove',
-  url = 'https://norviagel.vercel.app',
+  url = 'https://norviaeu.com',
   email = 'gelgloves@carpartsroosendaal.nl',
   telephone = '+31 16585222',
   address = {
@@ -114,7 +114,7 @@ interface LocalBusinessJsonLdProps {
 
 export function LocalBusinessJsonLd({
   name = 'Norvia Gel Glove',
-  url = 'https://norviagel.vercel.app',
+  url = 'https://norviaeu.com',
   email = 'gelgloves@carpartsroosendaal.nl',
   telephone = '+31 16585222',
   address = {

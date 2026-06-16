@@ -13,7 +13,7 @@ import B2BSection from '@/components/sections/B2BSection';
 import CTASection from '@/components/sections/CTASection';
 import { OrganizationJsonLd } from '@/components/seo/JsonLd';
 
-const BASE_URL = 'https://norviagel.vercel.app';
+const BASE_URL = 'https://norviaeu.com';
 
 const metadataByLocale = {
   nl: {

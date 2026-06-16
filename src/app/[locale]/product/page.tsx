@@ -9,7 +9,7 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
-const BASE_URL = 'https://norviagel.vercel.app';
+const BASE_URL = 'https://norviaeu.com';
 
 const SEO_DEFAULTS = {
   nl: {
@@ -118,7 +118,7 @@ export default async function ProductPage({ params }: Props) {
     }
   }
 
-  const productImage = images[0]?.url || 'https://norviagel.vercel.app/images/bottle.png';
+  const productImage = images[0]?.url || 'https://norviaeu.com/images/bottle.png';
   const productDescription = product?.description || 'Norvia Gel Glove - Innovatieve gel die een onzichtbare beschermlaag vormt op de handen. Tot 4 uur bescherming tegen olie, verf, vuil en chemicalien.';
 
   return (
@@ -130,7 +130,7 @@ export default async function ProductPage({ params }: Props) {
         price={price}
         priceCurrency={currencyCode}
         availability={available ? 'InStock' : 'OutOfStock'}
-        url="https://norviagel.vercel.app/product"
+        url="https://norviaeu.com/product"
       />
       <ProductContent
         images={images}

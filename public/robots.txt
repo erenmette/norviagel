@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://norviagel.vercel.app/sitemap.xml
+Sitemap: https://norviaeu.com/sitemap.xml

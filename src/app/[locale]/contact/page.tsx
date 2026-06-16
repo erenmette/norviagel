@@ -5,7 +5,7 @@ import ScrollAnimationWrapper from '@/components/sections/ScrollAnimationWrapper
 import type { Metadata } from 'next';
 import { LocalBusinessJsonLd } from '@/components/seo/JsonLd';
 
-const BASE_URL = 'https://norviagel.vercel.app';
+const BASE_URL = 'https://norviaeu.com';
 
 type Props = {
   params: Promise<{ locale: string }>;

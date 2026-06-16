@@ -106,6 +106,16 @@ export default function Footer() {
                   {t('contact')}
                 </Link>
               </li>
+              <li>
+                <Link href="/blog" className="text-sm text-text-muted hover:text-accent transition-colors">
+                  {t('blog')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/b2b" className="text-sm text-text-muted hover:text-accent transition-colors">
+                  {t('b2b')}
+                </Link>
+              </li>
             </ul>
           </div>
 

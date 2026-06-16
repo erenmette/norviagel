@@ -15,7 +15,8 @@
     "contact": "Contact",
     "cart": "Cart",
     "buyNow": "Buy Now",
-    "b2b": "B2B Orders"
+    "b2b": "B2B Orders",
+    "blog": "Blog"
   },
   "hero": {
     "badge": "Innovative Hand Protection",
@@ -335,7 +336,9 @@
     "terms": "Terms & Conditions",
     "copyright": "© {year} Norvia Gel Glove. All rights reserved.",
     "address": "Gastelseweg 59, Roosendaal",
-    "exclusiveDistributor": "Exclusive European Distributor: Car Parts Roosendaal"
+    "exclusiveDistributor": "Exclusive European Distributor: Car Parts Roosendaal",
+    "blog": "Blog",
+    "b2b": "Business"
   },
   "cart": {
     "title": "Cart",

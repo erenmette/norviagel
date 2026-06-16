@@ -5,7 +5,7 @@ import ScrollAnimationWrapper from '@/components/sections/ScrollAnimationWrapper
 import Image from 'next/image';
 import type { Metadata } from 'next';
 
-const BASE_URL = 'https://norviagel.vercel.app';
+const BASE_URL = 'https://norviaeu.com';
 
 type Props = {
   params: Promise<{ locale: string }>;
